@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>回款详情</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body class="hd">
+	<div class="invest" id="hd" v-cloak>
+		<header class="invest-header">
+			<span class="back" @click="goback()">
+				<img src="/skins/new/images/icon_back.png" alt="">
+			</span>
+			<h1 v-if="investInfo" v-text="investInfo.borrowName?investInfo.borrowName:'回款详情'"></h1>
+		</header>
+
+		<section class="block">
+			<div class="block-hkdetails">
+				<p>预期收益（元）</p>
+				<p>
+					<span v-text="investInfo.sumrecMoney"></span>
+				</p>
+				<p>已获得积分
+					<em v-text="investInfo.integral"></em>个</p>
+			</div>
+		</section>
+
+		<div class="hr10"></div>
+
+		<section class="block block-hkbx">
+			<div class="block-title">
+				应收本息
+				<span v-text="investInfo.baseMoney + '元'"></span>
+			</div>
+			<div class="block-list">
+				<p>已收利息
+					<span v-text="investInfo.receivedInterestMoney + '元'"></span>
+				</p>
+				<p>已收本金
+					<span v-text="investInfo.receivedBaseMoney + '元'"></span>
+				</p>
+				<p>待收利息
+					<span v-text="investInfo.recInterestMoney + '元'"></span>
+				</p>
+				<p>待收本金
+					<span v-text="investInfo.recBaseMoney + '元'"></span>
+				</p>
+			</div>
+		</section>
+
+		<div class="hr10"></div>
+
+		<section class="block block-hkbx">
+			<div class="content-slide">
+				<div class="slide-th">
+					投资信息
+					<em class="down"></em>
+				</div>
+				<div class="slide-td block-list hide">
+					<p>约定年化收益率
+						<span v-text="investInfo.borrowRate+'%'"></span>
+					</p>
+					<p>投资金额
+						<span v-text="investInfo.investMoney + '元'"></span>
+					</p>
+					<p>
+						<em v-if="investInfo.rewardType == 'RATE_VOUCHER'">加息券</em>
+						<em v-if="investInfo.rewardType == 'CASH_VOUCHER'">现金券</em>
+						<em v-if="investInfo.rewardType == 'EXPERIENCE_VOUCHER'">体验金券</em>
+						<span v-text="investInfo.voucher"></span>
+					</p>
+					<p>投资期限
+						<template v-if="investInfo.rewardType==='EXPERIENCE_VOUCHER'">
+							<span v-text="'3天'"></span>
+						</template>
+						<template v-else>
+							<span v-text="investInfo.borrowDuration+durTypeMap(investInfo.durType)"></span>
+						</template>
+					</p>
+					<p>回款方式
+						<span v-text="investInfo.repaymentType"></span>
+					</p>
+					<p>起息日~到期日
+						<span v-text="investInfo.loanTime + '~' + investInfo.repaymentedTime"></span>
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<div class="hr10"></div>
+
+		<section class="block block-hkbx">
+			<div class="block-list-title">
+				<a :href="isApp?'receive_money_plan.html?investId='+investInfo.investInfoId+'&userId='+userId+'&title=no':'receive_money_plan.html?investId='+investInfo.investInfoId">
+					回款计划
+					<span>
+						<em v-text="investInfo.countInvested+'/'+investInfo.countInvest"></em>
+						<img src="/skins/new/images/jt_right.png" alt="">
+					</span>
+				</a>
+			</div>
+			<div class="block-list-title" v-if="investInfo.rewardType !== 'EXPERIENCE_VOUCHER'">
+				<a href="javascript:;">
+					投资合同
+					<span>
+						<em>请至PC端下载查看</em>
+					</span>
+				</a>
+			</div>
+		</section>
+	</div>
+	<script src="/js/new_js/account.js"></script>
+	<script>
+		vms.investDetail();
+		$(function () {
+			if (title == "no") {
+				$("header")
+					.hide();
+			}
+		})
+		$('.content-slide').each(function () {
+			$('.slide-th', $(this)).click(function () {
+				var swiperIndex = window.index | 0
+
+
+				var $this = $(this)
+				var $td = $this.siblings()
+				if (!$('em', $this).hasClass('down')) {
+					$td.hide()
+					$('em', $this).addClass('down')
+				} else {
+					$td.show()
+					$('em', $this).removeClass('down')
+				}
+				if (window.tabsSwiper) {
+					window.tabsSwiper.slideTo(swiperIndex, 1000, false)
+				}
+				return
+			})
+		});
+	</script>
+</body>
+
+</html>

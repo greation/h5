@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>体验金标</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+	<script type="text/javascript" src="/plugins/swiper/idangerous.swiper.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body>
+	<div id="invest" class="invest" v-cloak>
+		<header class="invest-header">
+			<span class="back" onClick="javascript :history.back(-1);">
+				<img src="/skins/new/images/icon_back.png" alt="">
+			</span>
+			<h1>体验金标</h1>
+		</header>
+		<div class="header10"></div>
+
+		<section class="block invest-desc-block">
+			<div class="block-content">
+				<ul class="item-list">
+					<li>
+						<div class="item_cont" v-if="data.borrow">
+							<div>
+								<div class="item-left">
+									<p>约定年化收益</p>
+									<h1>
+										<span v-text="data.borrow.borrowRate"></span>%
+										<span class="tip" v-if="data.borrow.addRate > 0">+
+											<span v-text="data.borrow.addRate"></span>%</span>
+									</h1>
+								</div>
+								<div class="item-right">
+									<p>期限</p>
+									<h1 v-text="data.borrow.borrowDuration"></h1>
+								</div>
+							</div>
+							<div class="tags">								
+								<span v-if="data.borrow.useVoucher == 'CASHEXPERIENCE'">体验金专享</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<div class="hr10"></div>
+
+		<section class="block">
+			<div class="block-title">
+				产品详情
+			</div>
+			<div class="swiper-tabs">
+				<div class="swiper-slide-list">
+					<div class="content-slide">
+						<div class="slide-th">
+							<span>01</span>产品介绍
+							<em class="down"></em>
+						</div>
+						<div class="slide-td">
+							<p>客户注册后可获得赠送的体验金红包, 内含平台赠送的体验金。体验标是平台设立的专门针对新注册未投资客户的投资体验产品，体验标不对接金融产品。目的是让新注册客户体验充值、投资、本息返回的理财流程，为投资金融产品做好准备。</p>
+						</div>
+					</div>
+					<div class="content-slide">
+						<div class="slide-th">
+							<span>02</span>产品说明
+							<em class="down"></em>
+						</div>
+						<div class="slide-td hide">
+							<p>1、适用人群：已注册但从未投资的所有类型投资人；</p>
+							<p>2、产品属性：不对接金融产品，发放平台福利的通道；</p>
+							<p>3、不支持现金券、加息券及预约投标；</p>
+							<p>4、用户仅获得利息收益，体验金本金由平台回收。PC端体验金标里面有展示</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="hr60"></div>
+
+		<footer v-if="data.borrow">
+			<button class="btn-pull" @click="expresInvest"
+			:disabled="data.borrow.borrowStatus === 'END'">立即投资</button>
+		</footer>
+		<!-- <div id="toTop" onclick="$(document).scrollTop(0);">
+						<img src="/images/backup.png" />
+					</div> -->
+	</div>
+
+	<script src="/js/new_js/invest_detail.js" charset="UTF-8"></script>
+	<script>
+		iv.invest();
+	</script>
+</body>
+
+</html>

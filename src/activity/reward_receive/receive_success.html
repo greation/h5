@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>领取结果</title>
+  <link rel="stylesheet" href="/skins/default/css/public.css" />
+  <link rel="stylesheet" href="/src/activity/reward_receive/css/activity.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+  <script src="/js/zepto.min.js"></script>
+  <script src="/js/public.js"></script>
+</head>
+
+<body>
+  <div class="container relative receive" id="indexPage">
+    <header>
+      <div class="item back">
+
+      </div>
+      <div class="item title c3">
+        领取结果
+      </div>
+      <a class="item operation c6">
+        
+      </a>
+    </header>
+    <div class="centent text-center">
+      <img src="./images/suc_img.png" alt="" style="margin-top:16%;" class="suc_img" width="42%">
+      <p class="mar-t-20 color_red fs38">恭喜你领取成功</p>
+      <p class="fs24" style="margin-top:20%">实物商品将于10个工作日内为您发货。</p>
+      <p class="fs24 mar-t-5">兑换码商品请至已领取页面查看。</p>
+      <p class="fs24 mar-t-5">如有疑问请致电客服：400-109-2626</p>
+      <p class="fs24 mar-t-5">或直接在微信公众号内咨询。</p>
+      <a href="javascript:parent.location.href='/src/activity/reward_receive/index.html?random='+escape(new Date())" class="btn_back">返回</a>
+    </div>
+ 
+  </div>
+  <style>
+    .btn_back{
+      width:38%;
+      height:46px;
+      background: #1e80ff;
+      color:#fff!important;
+      display: block;
+      margin: 5% auto;
+      line-height: 46px;
+    }
+  </style>
+  <script src="/js/vue.min.js"></script>
+  <script src="js/activity.js"></script>
+  <script>
+    vms.receive();
+  </script>
+</body>
+
+</html>

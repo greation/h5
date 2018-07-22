@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>宜泉资本账号登录</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/base.css"/>
+	<link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+</head>
+<body class="re fp bg-white">
+	@@include('../include/head.html',{
+	"title":"宜泉资本账号登录",
+	"isback":true
+})
+<div class="container" id="sqlogin">
+	<img src="../../images/sqbanner.jpg" width="100%"/>
+	<div class="form page">
+		<div class="">
+			<input type="button" value="授权并登录" class="btn_next" @click="sqLogin">
+		</div>
+	</div>
+	<div class="text-center c999 pad-t-10 fs24">授权将会获取您公开信息（手机号，用户等级等）</div>
+</div>
+<script src="/js/base.js"></script>
+<script>
+	vms.authorize();
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>关于宜泉</title>
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/about.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+    <script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+    <script src="/js/public.js"></script>
+</head>
+<body>
+@@include('../include/head.html',{ "title":"关于宜泉", "isback":true })
+<script>
+    $(document).ready(function () {
+        $(".testin").scrollLeft(140);
+    })
+</script>
+<div class="tabar">
+    <div class="testin" style="overflow-x: auto">
+        <ul class="tabbar">
+            <li><a href="/src/about/aboutekeyfund.html" >平台简介</a></li>
+            <li><a href="/src/about/team.html" >管理团队</a></li>
+            <li><a href="/src/about/organization.html" >组织信息</a></li>
+            <li class="cur"><a href="/src/about/certificate.html" >资质证书</a></li>
+            <li><a href="/src/about/contact.html" >联系我们</a></li>
+            <li><a href="/src/about/acceptance.html" >承诺函</a></li>
+        </ul>
+    </div>
+</div>
+    <div class="zszz ">
+        <div class="zsbg">
+            <div class="zsbgnm swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="/images/1.png"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/images/2.png"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/images/3.png"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/images/4.png"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/images/5.png"/>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%;clear: both;height:100px;">
+                <ul class="minimg">
+                    <li class="active w_img1"><div class="bg-box"></div><img src="/images/l1.png" alt=""></li>
+                    <li class="w_img2"><div class="bg-box"></div><img src="/images/l2.png" alt=""></li>
+                    <li class="w_img2"><div class="bg-box"></div><img src="/images/l3.png" alt=""></li>
+                    <li class="w_img3"><div class="bg-box"></div><img src="/images/l4.png" alt=""></li>
+                    <li class="w_img3"><div class="bg-box"></div><img src="/images/l5.png" alt=""></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    $(function(){
+        var mySwiperImg = new Swiper( '.zsbgnm', {
+            direction: 'horizontal',
+            speed: 400,
+            loop : true,
+            onSlideChangeEnd: function(swiper){
+                //Swiper初始化了
+                if(swiper.activeIndex==6)
+                    swiper.activeIndex=1;
+                $('.minimg li').eq(swiper.activeIndex-1).addClass('active').siblings().removeClass('active');
+            }
+        } )
+        $('.minimg li').each(function(index){
+            $(this).click(function(){
+                mySwiperImg.slideTo(index+1);
+            })
+        });
+
+    });
+    $(function(){
+        if (APP_FLAG == 'APP_ANDROID' || APP_FLAG == 'APP_IOS') {
+            $("header").hide();
+            $(".navposition .zzdata").css("margin-top","45px");
+            $(".navposition .tabar").css("top","0");
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body>
+	<div class="pad-b-60" id="investh" >
+		<header class="invest-header">
+			<span class="back" onClick="javascript :history.back(-1);">
+				<img src="/skins/new/images/icon_back.png" alt="">
+			</span>
+			<h1 v-if="borrowType == 'MAKECAR' || borrowType == 'MAKEQIXIN'">预约专享标</h1>
+			<h1 v-else-if="borrowType == 'GYCAR'">车满盈</h1>
+			<h1 v-else-if="borrowType == 'NEWUSER' || borrowType == 'GYHOUSE' || borrowType == 'MAKE'">房月盈</h1>
+			<h1 v-else-if="borrowType == 'GYQIXIN'">企信盈</h1>
+		</header>
+
+		<div class="investh">
+			<section class="block">
+				<div class="add_invest">
+					&yen;
+					<input type="tel" v-model="money" @keyUp="contFilter('money')" @change="inputMony" name="" id="money" 
+						:placeholder="minInvest + '元起投 增量' + incMoney + '元'"
+						maxlength="9" 
+						:disabled="borrowType == 'MAKECAR' || borrowType == 'MAKE' || borrowType == 'MAKEQIXIN'" />
+				</div>
+				<!-- <div class="express">
+					<span>请输入金额为100元的整倍数</span>
+					<a class="cblue" href="javascript:void(0)" @click="linkChargeWith">充值</a>
+				</div> -->
+				<div class="express express-tip">
+					<span>可用余额
+						<em v-text="raiseMoney.toLocaleString()+'元'"></em>
+					</span>
+					<a class="cblue" href="javascript:void(0)" @click="linkChargeWith">充值</a>
+				</div>
+			</section>
+
+			<div class="express">
+				<div class="express_name">
+					剩余金额
+					<em v-text="((data.borrow.borrowMoney-data.borrow.raiseMoney)/100).toLocaleString() + '元'"></em>
+					加入上限{{parseInt(data.borrow.maxInvest/100).toLocaleString()}}元
+				</div>
+			</div>
+
+			<div class="tips_invest" id="investTips" style="display: none;">
+				<div>
+					<span class="c9 fs28 mar-l-20 wa90  db">投资成功后将立即获得20元现金，赶快到账户余额产看吧</span>
+				</div>
+			</div>
+			<div class="cardc" @click="carDto">
+				<input type="hidden" id="token" :value="data.token">
+				<img src="/skins/new/images/icon-coupon.png" />
+				<div class="cardc-right">
+					<h1>优惠券</h1>
+					<p id="voucherId">
+						<!-- <em v-if="cardData.voucherCount > 0">可用 {{cardData.voucherCount}} 张</em> -->
+						<!-- <em v-if="cardData.voucherCount == 0 || cardData == ''">暂无可用</em> -->
+					</p>
+				</div>
+				<span>
+					<img src="/skins/new/images/jt_right.png" alt="">
+				</span>
+			</div>
+
+			<div class="express">
+				预期到账总收益
+				<span id="yuqiGet" style="color: #f63;"></span>
+				可获积分
+				<span id="integralGet" v-text="data.integralGet" style="color: #f63;"></span>
+			</div>
+
+			<input type="hidden" id="token">
+			<div class="tips_invest">
+				<div class="wa90 ">
+					<!-- <input type="checkbox" id="xieyi" name="xieyi" class="checkXy" v-model="isXieYi" /> -->
+					<img :src="isXieYi?'/skins/new/images/checked-icon.png':'/skins/new/images/no-checked-icon.png'" 
+						@click="isXieYi = !isXieYi"
+						class="xieyi-icon" />
+					<label for="xieyi">
+						同意
+						<a class="cblue fs28" :href="borrowType == 'GYQIXIN'?'ebook_qxy_qr.html':'/src/invest/investxy.html'">《宜泉资本投资协议》</a>
+						<a class="cblue fs28" href="/src/invest/cfca.html">《CFCA数字证书服务协议》</a>
+					</label>
+				</div>
+			</div>
+			<div class="btn_invest">
+				<button :disabled="isInvestDisabled" @click="rightInvest()">确认投资</button>
+			</div>
+		</div>
+	</div>
+	<script src="/js/new_js/investcout.js" charset="UTF-8"></script>
+	<script>
+		vms.investing();
+	</script>
+</body>
+
+</html>

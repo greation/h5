@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<title>媒体报道</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/article.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body class="in bg-white">
+	<header class="find-header">
+		<span class="back" onClick="javascript:history.back(-1);">
+			<img src="/skins/new/images/icon_back.png" alt="">
+		</span>
+		<h1>媒体报道</h1>
+	</header>
+	<div id="mediaNew">
+		<section class="block">
+			<div class="block-content">
+				<ul class="item-list">
+					<li v-for="(item, index) in items" :key="index" @click="newin(item.noticeId)" class="find-media-list">
+						<div class="content">
+							<h2 v-text="item.title"></h2>
+							<p v-text="item.publishTime"></p>
+						</div>
+						<div class="img">
+							<img v-if="item.imgUrl" :src="item.imgUrl" alt="">
+							<img v-else src="/skins/new/images/media-detail-img.png">
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+	</div>
+	
+
+</body>
+<script src="/js/new_js/article.js"></script>
+<script>
+	active.media();
+</script>
+
+</html>

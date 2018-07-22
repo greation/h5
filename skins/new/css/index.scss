@@ -1,0 +1,307 @@
+.hr10,
+.header10 {
+  width: 100%;
+  height: 10px;
+  background: #f9f9fb;
+}
+
+.hr65 {
+  width: 100%;
+  height: 64px;
+  background: #f9f9fb;
+}
+
+.hr60 {
+  width: 100%;
+  height: 60px;
+  background: #f9f9fb;
+}
+
+.home {
+  padding-bottom: 55px;
+}
+
+.hide {
+  display: none;
+}
+
+.banner {
+  width: 100%;
+}
+
+.message-icon-box {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  z-index: 9;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.message-icon-box .dot {
+  position: absolute;
+  top: 4px;
+  right: 3px;
+  background: #ff5a5a;
+  color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+}
+.message-icon-box img {
+  width: 20px;
+  height: 20px;  
+}
+
+.swiper-slide a img {
+  width: 100%;
+}
+
+.block {
+  background: #fff;
+  width: 100%;
+}
+.block-ad {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  height: 6rem;
+}
+.block-ad > div {
+  width: 50%;
+  background: url('../images/activityBannerList-default.png') no-repeat;
+  background-size: 100%;
+  height: 6rem;
+}
+.block-ad img {
+  width: 100%;
+}
+
+.block .block-title {
+  border-bottom: 0.5px #eaf1f5 solid;
+  font-size: 16px;
+  padding: .7rem 1rem;
+  color: #333c40;
+  font-weight: bold;
+}
+.block .block-title .more {
+  float: right;
+  color: #A2ACB1;
+  font-size: 13px;
+  line-height: 24px;
+  font-weight: normal;
+}
+
+.block .block-title .more img {
+  width: 14px;
+  vertical-align: -2px;
+  margin-left: 2px;
+}
+.block-content {
+  &-qxy {
+    margin: 20px; 
+    img {
+      width: 20px;
+      margin-right: 10px;
+      vertical-align: -4px;
+    }
+  }
+  &-img {    
+    margin: 20px 1rem 0 1rem;
+    img {
+      width: 100%;
+    }
+  }
+}
+.item-list {
+  padding-left: 1rem;
+  margin: 0;
+}
+.item-list li{
+  border-bottom: 0.5px #eaf1f5 solid;  
+  width: 100%;
+}
+.item-list li:last-child {
+  border: none;
+}
+.item_cont {
+  padding: 1rem 0;
+}
+.item_cont > div:first-child {
+  display: flex;
+}
+.item_cont .item-left,
+.item_cont .item-right {
+  width: 50%;
+}
+.item_cont .item-left h1 {
+  color: #FF6633;
+  font-size: 24px;
+}
+.item_cont .item-left h1 small {
+  font-size: 50%;
+}
+
+.item_cont .item-left h1 .tip {
+  background: url("../images/icon-tip.png") no-repeat;
+  display: inline-block;
+  color: #fff;
+  font-size: 12px;
+  width: 60px;
+  height: 30px;
+  background-size: 60px;
+  padding-left: 13px;
+  line-height: 30px;
+  vertical-align: 4px;
+  white-space:nowrap;
+}
+.item_cont .item-left p {
+  color: #A2ACB1;
+  font-size: 13px;
+  padding: 10px 0;
+}
+.item_cont .item-title {
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.item_cont .tags {
+  margin-top: .3rem;
+}
+.item_cont .tags span {
+  color: #4C88FF;
+  font-size: 12px;
+  background: rgba(76, 136, 255, .1);
+  padding: 0 7px;
+  margin-right: .3rem;
+  display: inline-block;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.item_cont .tags span.color {
+  color: #FF6633;
+  background: rgba(255, 102, 51, .1);
+}
+.item_cont .item-right {
+  padding-top: .3rem;
+}
+.item_cont .item-right h6 {
+  font-size: 16px;
+  color: #333C40;  
+  font-weight: bold;
+}
+.item_cont .item-right p {
+  color: #59686F;
+  font-size: 13px;
+  padding: 10px 0;
+  margin-top: 5px;
+}
+
+.block-about {
+  display: flex;
+  padding: 20px 1rem;
+}
+.block-about >div {
+  width: 50%;
+}
+.block-about p {
+  color: #A2ACB1;
+  font-size: 13px;
+  margin-top: .3rem;
+}
+.block-about h5 {
+  font-size: 18px;
+}
+
+.swiper-about {
+  height: 100%;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+.swiper-about .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: url('../images/platformDataBannerList-default.png') no-repeat;
+  background-size: 100%;
+  height: 4rem;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center; 
+  overflow: hidden;
+}
+.swiper-banner .swiper-pagination-bullet {
+  width: 7px;
+  height: 7px;
+}
+.swiper-slide img {
+  width: 100%;
+}
+
+/*首页 活动弹出框 */
+.activty_dream{background: rgba(0,0,0,0.8);width: 100%;height: 100%;position: fixed;top: 0;left: 0;z-index: 999}
+.activty_dream_img{position:relative;width: 100%;display: block;left: 50%;margin-left: -50%;top:3rem;}
+.right_get{position:relative;top:-4rem;left: 0; display: block;width: 100%;height: 50px;border-radius: 20px;text-align: center;}
+.close_activity{position: absolute;top:9rem;right: 20%;display: block;width: 30px;height: 30px;border-radius: 50px;margin-right: -15px;}
+.close_activity img{width: 100%;}
+.anneversary_box{width:90px; position: fixed; right: 12px;bottom: 67px;}
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+.bounceIn{
+    animation-duration:.75s;
+}
+@keyframes bounceIn {
+    from, 20%, 40%, 60%, 80%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    0% {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+    }
+
+    20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+
+    40% {
+        transform: scale3d(.9, .9, .9);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+
+    80% {
+        transform: scale3d(.97, .97, .97);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.bounceIn {
+    animation-name: bounceIn;
+}

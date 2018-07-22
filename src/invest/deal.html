@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html class="bg-white">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>约标</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body style="height: 100vh;">
+	<div id="deal" class="invest" v-cloak>
+		<header class="invest-header">
+			<span class="back" onClick="javascript :history.back(-1);">
+			<!-- <span class="back" onClick="javascript :window.location.href = '/src/invest/list_all.html?borrowType=2';"> -->
+				<img src="/skins/new/images/icon_back.png" alt="">
+			</span>
+			<h1>约标</h1>
+		</header>
+		<div style="margin-top: 10px;"></div>
+
+		<section class="invest-block">
+			<div class="invest-block-list">
+				<div class="item">
+					<span>约标类型</span>
+					<div class="select">
+						<select v-model="typeB" @change="TypeC()">
+							<option v-for="item in items" :value="item.makeTypeIdStr" v-text="item.makeTypeName"></option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<span>期限/收益率</span>
+					<div class="select">
+						<select v-model="typeQ" @change="caculate()">
+							<option v-for="list in deList" :value="list.idStr" v-text="list.makeborrowDeadline +'个月' + list.makeborrowEarnings+'%'"></option>
+						</select>
+					</div>
+				</div>
+				<div class="item no-border">
+					<span>约标金额</span>
+					<div class="select">
+						<select id="moneyId" v-model="typeM" @change="caculate()">
+							<option v-for="list in moneyList" 
+								v-text="list.makeborrowMoney +'万元'":value="list.idStr"></option>
+						</select>
+					</div>
+				</div>
+				<p v-if="isShowCz">				
+					您的余额不足，不能约标，请
+					<a href="javascript:;" @click="rechargeBtn">充值</a>					
+				</p>
+				<div class="hr10" style="margin-left: -1rem;width: 110%;" v-else></div>
+				<div class="item-textarea">
+					<span>备注 (选填)</span>
+					<div class="textarea">
+						<textarea type="text" placeholder="请输入备注说明" id="remark" maxlength="200"></textarea>
+					</div>
+				</div>
+				<p>
+					平台根据现有产品及资产额度为您匹配标的，约标成功后以短信方式通知，如对推荐的产品有疑问请及时联系理财顾问或客服。
+				</p>
+			</div>
+			<div class="hr65"></div>
+			<div class="btn_invest btn_invest_footer">
+				<button @click="creatYb">一键约标</button>
+			</div>
+		</section>
+	</div>
+
+	<script src="/js/new_js/deal.js"></script>
+	<script>
+		iv.car();
+	</script>
+
+</body>
+
+</html>

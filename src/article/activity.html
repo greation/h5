@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<title>活动专区</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/article.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body class="activity">
+	<header class="find-header">
+		<span class="back" onClick="javascript:history.back(-1);">
+			<img src="/skins/new/images/icon_back.png" alt="">
+		</span>
+		<h1>活动专区</h1>
+	</header>
+	<div class="find-activity" id="list">
+		<section class="find-activity-block mar-t-20" :class="{'find-activity-gray': item.activityStatus=='END'}" v-for="item in listData"
+		  :id="item.activityId">
+			<a @click="activitylink(item.activityJumpType,item.activityId,item.activityUrl)">
+				<img v-if="item.activityImg" :src="item.activityImg" alt="">
+				<img v-else src="/skins/new/images/activity-detail-img.png">
+				<template v-if="item.activityTitle===''">
+					<h2 v-text="item.activityName"></h2>
+				</template>
+				<template v-else>
+					<h2 v-text="item.activityTitle"></h2>
+				</template>
+				<div class="hr"></div>
+				<div class="find-activity-block-bottom">
+					<img class="jt-right" src="/skins/new/images/jt_right.png" />
+					<span class="statusing" v-if="item.activityStatus=='ACTIVE'">进行中</span>
+					<span class="starting" v-if="item.activityStatus=='NOSTART'">即将开始</span>
+					<span class="overing" v-if="item.activityStatus=='END'">已结束</span>
+					<span class="time" v-if="item.activityStatus==='ACTIVE'" v-show="isChuli" v-html="item.endDate"></span>
+					<span class="time" v-else>0天0小时0分0秒</span>
+				</div>
+			</a>
+		</section>
+		<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+	</div>
+
+</body>
+<script src="/js/new_js/vue.min.js"></script>
+<script src="/js/new_js/base.js"></script>
+<script src="/js/new_js/article.js"></script>
+<script type="text/javascript">
+	active.list();
+</script>
+
+</html>

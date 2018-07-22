@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>列表</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body>
+	<div id="invest" class="invest" v-cloak>
+		<header>
+			<span class="back" onClick="javascript:window.location.href='index.html';">
+				<img src="/skins/new/images/icon_back.png" alt="">
+			</span>
+			<h1>
+				<span v-if="borrowType == '1'">车满盈</span>
+				<span v-if="borrowType == '2'">预约专享</span>
+				<span v-if="borrowType == '0'">房月盈</span>
+				<span v-if="borrowType == '3'">企信盈</span>
+			</h1>
+		</header>
+
+		<section class="block">
+			<div class="invest-sort">
+				<div :class="sortType === 0 && sortRule === 0?'active': ''" @click="commenRank">
+					综合排序
+				</div>
+				<div :class="sortType === 1?'active':''" @click="rateRank">
+					利率
+					<em :class="sortType === 1 && sortRule === 1?'up':'down'"></em>
+				</div>
+				<div :class="sortType === 2?'active':''" @click="dateRank">
+					期限
+					<em :class="sortType === 2 && sortRule === 1?'up':'down'"></em>
+				</div>
+				<div :class="sortType === 3?'active':''" @click="progressRank">
+					进度
+					<em :class="sortType === 3 && sortRule === 1?'up':'down'"></em>
+				</div>
+			</div>
+		</section>
+
+		<div class="hr10"></div>
+
+		<section class="block">
+			<div class="block-content">
+				<ul class="item-list">
+					<li v-for="(item, index) in data.investListBorrow" :key="index" @click="projectLink(item.borrowId, item.borrowType)">
+						<div class="item_cont">
+							<div>
+								<div class="item-left">
+									<h1>
+										<span v-text="item.borrowRate"></span>%
+										<span class="tip" v-if="item.addRate > 0">+
+											<span v-text="item.addRate"></span>%</span>
+									</h1>
+									<p>约定年化收益</p>
+								</div>
+								<div class="item-right">
+									<h6>期限
+										<span v-text="item.borrowDuration"></span>
+									</h6>
+									<p class="item-title" v-text="item.borrowName"></p>
+								</div>
+							</div>
+							<div class="tags">
+								<span v-if="item.useVoucher == 'CASHVOCHER' || item.useVoucher == 'CANUSE'">现金券</span>
+								<span v-if="item.useVoucher == 'CASHCOUPON' || item.useVoucher == 'CANUSE'">加息券</span>
+								<span class="color" v-if="item.activityTag" v-text="item.activityTag"></span>
+							</div>
+							<div class="progress">
+								<div class="progress-bar">
+									<div class="progress-bar-active" :style="'width:' + item.raiseRate + '%'"></div>
+								</div>
+								<div class="progress-text">
+									剩余可投 {{item.surplusInvestMoney}}
+									<span>{{item.raiseRate}} %</span>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<div class="invest-more" @click="isCarEnd = true" v-if="isCarEnd == false">
+			点击查看近期已结束的产品
+		</div>
+
+		<section class="block block-end" v-if="isCarEnd">
+			<div class="block-end-title">
+				<div class="block-end-title-hr">
+					<span>以下为近期已结束产品</span>
+				</div>
+			</div>
+			<div class="block-content">
+				<ul class="item-list">
+					<li v-for="(item, index) in data.endListBorrow" :key="index" @click="projectLink(item.borrowId, item.borrowType)">
+						<div class="item_cont">
+							<div>
+								<div class="item-left">
+									<h1>
+										<span v-text="item.borrowRate"></span>%
+										<span class="tip" v-if="item.addRate > 0">+
+											<span v-text="item.addRate"></span>%</span>
+									</h1>
+									<p>约定年化收益</p>
+								</div>
+								<div class="item-right">
+									<h6>期限
+										<span v-text="item.borrowDuration"></span>
+									</h6>
+									<p class="item-title" v-text="item.borrowName"></p>
+								</div>
+							</div>
+							<div class="tags">
+								<span v-if="item.useVoucher == 'CASHVOCHER' || item.useVoucher == 'CANUSE'">现金券</span>
+								<span v-if="item.useVoucher == 'CASHCOUPON' || item.useVoucher == 'CANUSE'">加息券</span>
+								<span v-if="item.activityTag" v-text="item.activityTag"></span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<div class="invest-more" v-if="isCarEnd">
+			更多产品详情请至PC端查看
+		</div>
+
+		<div :class="borrowType == '2'?'hr65':'hr10'"></div>
+
+		<footer v-if="borrowType == '2'">
+			<button class="footer-my-mark" @click="toMyMark">查看我的约标</button>
+		</footer>
+		<!--约标password-->
+		<div class="modal-bg hide"></div>
+		<div class="yb-psw hide">
+			<p class="yb-psw-title">约标</p>
+			<div class="ipswbox relative" id="inputPwd" @click="pwdIn">
+				<i>
+					<span class="placeholder">请输入约标密码</span>
+				</i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<input type="text" maxlength="6" v-model="pwdYb" class="pswbtn" id="pswbtn" autocomplete="off" />
+			</div>
+			
+			<div class="psw_btn">
+				<button class="pswsure" @click="pswSure">确认</button>
+				<button class="pswcancle" @click="pswCancle">取消</button>
+			</div>
+		</div>
+		<!-- <div id="toTop" onclick="$(document).scrollTop(0);">
+			<img src="/images/backup.png" />
+		</div> -->
+	</div>
+
+	<script src="/js/new_js/invest_share.js"></script>
+	<script>
+		iv.invest();
+	</script>
+</body>
+
+</html>

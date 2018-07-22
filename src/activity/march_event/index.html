@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <title></title>
+  <link rel="stylesheet" href="/skins/default/css/public.css" />
+  <link rel="stylesheet" href="/src/activity/march_event/css/activity.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+  <script src="/js/zepto.min.js"></script>
+  <script src="/js/public.js"></script>
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script>
+    util.wxShareMain({
+      //如果如要debug加添参数debug为true
+      title: '春意盎然享好礼 财气四溢迎暖春',
+      desc: '暖春送福利 感恩大回馈',
+      link: Helper.webPath + '/src/activity/march_event/index.html',
+      imgUrl: Helper.webPath + '/src/activity/march_event/images/wxshare.jpg',
+      successEvt: function () {
+        window.location.href = '/src/activity/march_event/index.html?random=' + parseInt(Math.random() *
+          100000);
+      },
+      cancelEvt: function () {
+        //
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container" id="index">
+    <div class="imgs">
+      <div class="img_box relative">
+        <img src="images/img_01.jpg" alt="">
+        <div class="btn_rule_one" id="btn-rule"></div>
+      </div>
+      <div class="img_box relative">
+        <img src="images/img_02.jpg" alt="">
+        <div class="sm_explain">
+          <p class="fs26 mar-t-5">单笔投资半年标或年标满5000元即可</p>
+          <p class="fs26 mar-t-5">获得等值的小树苗，详情请看活动规则</p>
+          <p class="text-center">您当前的
+            <img src="images/icon_sapling.png" class="icon_sapling" alt="">共有
+            <span class="color-red" v-text="initData.treeCount">-</span> 棵,查看
+            <input type="button" class="btn_exchange_record" id="btn-record">
+          </p>
+        </div>
+      </div>
+      <div class="items_c">
+        <div class="line_01 relative">
+          <img src="images/img_b_01.jpg" alt="">
+          <span class="btn_exchange exchange01" @click="openExchangeModal(0)"></span>
+          <span class="btn_exchange exchange02" @click="openExchangeModal(1)"></span>
+          <span class="btn_exchange exchange03" @click="openExchangeModal(2)"></span>
+        </div>
+        <div class="line_02 relative">
+          <img src="images/img_b_02.jpg" alt="">
+          <span class="btn_exchange exchange01" @click="openExchangeModal(3)"></span>
+          <span class="btn_exchange exchange02" @click="openExchangeModal(4)"></span>
+          <span class="btn_exchange exchange03" @click="openExchangeModal(5)"></span>
+        </div>
+        <div class="line_03 relative">
+          <img src="images/img_b_03.jpg" alt="">
+          <span class="btn_exchange exchange01" @click="openExchangeModal(6)"></span>
+          <span class="btn_exchange exchange02" @click="openExchangeModal(7)"></span>
+          <span class="btn_exchange exchange03" @click="openExchangeModal(8)"></span>
+        </div>
+        <div class="relative">
+          <img src="images/img_b_04.jpg" alt="">
+          <span class="link_invest_list" @click="linkInvestList"></span>
+        </div>
+      </div>
+    </div>
+  
+  <div class="modal-rule hide">
+    <div class="clearfix">
+      <img src="images/btn_close.png" class="btn-close pull-right" alt="" width="44" height="44">
+    </div>
+    <div class="txt-cont">
+      <h3 class="text-center">活动规则</h3>
+      <div class="txt-gz hide" v-html="initData.rule">
+        
+      </div>
+    </div>
+  </div>
+  <div class="modal-exchange modal-exchange-box  hide">
+    <div class="title text-center">
+      <span>确认兑换</span>
+      <img src="images/icon_close.png" class="close_exchange_modal" alt="">
+    </div>
+    <div class="reward_name fs26">
+      <span class="c999" style="width:80px;flex-shrink:0">兑换奖品</span>
+      <span v-text="rewardArr[currentItem].rewardName"></span>
+    </div>
+    <div class="reward_count fs26">
+        <span class="c999" style="width:80px;flex-shrink:0">兑换数量</span>
+        <span>
+          <input type="button" class="btn_reduce" value="-"  @click="countReduce"><!--
+          --><input type="text" class="input_item_num" v-model="exchangeCount" @keyup="numFilter" maxlength="2"><!--
+          --><input type="button" class="btn_add" value="+" @click="countAdd">
+        </span>
+    </div>
+    <div class="sapling_num text-right mar-t-15">
+      <img src="images/icon_sapling.png" width="24" alt=""> x <span v-text="countSaplingNum"></span>
+    </div>
+    <div class="text-center mar-t-15">
+      <input type="button" class="confirm_exchange fs28" value="立即兑换" @click="exchangeMain" id="btn-confirm-exchange">
+    </div>
+    <p class="text-center fs20 color-gray mar-t-5">*兑换成功后10个工作日内发送获奖短信</p>
+  </div>
+  <div class="modal-exchange modal-exchange-record hide">
+      <div class="title text-center">
+        <span>兑换记录</span>
+        <img src="images/icon_close.png" class="close_exchange_modal" alt="">
+      </div>
+      <div class="relative list_scroll" v-if="recordArr.length>0">
+        <div class="record_item fs26" v-for="record in recordArr">
+          <span class="exchange_time c999" v-text="record.exchangeTime"></span>
+          <span class="exchange_name" v-text="record.rewardName"></span>
+          <span class="mar-l-5" v-text="'x'+record.exchangeCount"></span>
+        </div>
+      </div>
+      <div class="text-center" v-else>
+        <img src="images/none_record.jpg" alt="" width="150" class="mar-t-20">
+      </div>
+      
+    </div>
+</div>
+  <script src="/js/vue.min.js"></script>
+  <script src="js/activity.js"></script>
+  <script>
+    util.setCookieHandle(function(){
+      vm.index();
+    })
+  </script>
+</body>
+
+</html>

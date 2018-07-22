@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>我的投资</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body>
+	<div class="invest" id="mi" v-cloak>
+		<header>
+			<span class="back" onClick="javascript:window.location.href='index.html';">
+				<img src="/skins/new/images/icon_back.png" alt="">
+			</span>
+			<h1>我的投资</h1>
+		</header>
+		<section class="block">
+			<div class="invest-nav">
+				<div :class="{active:blockArr == 0}" @click="pageActive(0)">正在募集</div>
+				<div :class="{active:blockArr == 1}" @click="pageActive(1)">回款中</div>
+				<div :class="{active:blockArr == 2}" @click="pageActive(2)">已回款</div>
+			</div>
+		</section>
+
+		<div class="hr10"></div>
+
+		<div class="project_ls" v-show="blockArr == 0">
+			<div v-if="investSucDate.length > 0">
+				<section class="block">
+					<div class="block-content">
+						<ul class="item-list">
+							<li v-for="(item, index) in investSucDate" :key="index" @click="linkProject(item.borrowId)">
+								<div class="item-list-title">
+									募集中
+									<a href="javascript:;" class="more" v-text="item.investTime"></a>
+								</div>
+								<div class="item_cont">
+									<div>
+										<div class="item-left">
+											<h1>
+												<span v-text="item.rewardRate==='0.0'?item.borrowRate:(parseFloat(item.borrowRate)-parseFloat(item.rewardRate)).toFixed(1)">
+												</span>%
+												<span class="tip" v-if="item.rewardRate !== '0.0'">
+													+
+													<span v-text="item.rewardRate+'%'"></span>
+												</span>
+											</h1>
+											<p>约定年化收益</p>
+										</div>
+										<div class="item-right">
+											<h6>期限
+												<span v-text="item.borrowDuration"></span>
+											</h6>
+											<p class="item-title" v-text="item.borrowName"></p>
+										</div>
+									</div>
+									<div class="tags">
+										<span v-if="item.useVoucher == 'CASHVOCHER' || item.useVoucher == 'CANUSE'">现金券</span>
+										<span v-if="item.useVoucher == 'CASHCOUPON' || item.useVoucher == 'CANUSE'">加息券</span>
+										<span class="color" v-if="item.activityTag" v-text="item.activityTag"></span>
+									</div>
+									<div class="progress">
+										<div class="progress-bar">
+											<div class="progress-bar-active" :style="{width:(item.raiseMoney/item.borrowMoney*100).toFixed(2)+'%'}"></div>
+										</div>
+										<div class="progress-text">
+											<!-- 剩余可投 {{item.borrowMoney-item.raiseMoney}} -->
+											剩余可投 {{item.surplusInvestMoney}}
+											<span>{{(item.raiseMoney/item.borrowMoney*100).toFixed(2)}} %</span>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+			</div>
+			<div class="no-jilu" v-else>
+				<img src="/skins/new/images/touzi-no.png" alt="">
+				<div class="no-more">暂无记录</div>
+			</div>
+		</div>
+		<div class="project_ls" v-show="blockArr == 1">
+			<div v-if="loadDate.length > 0">
+				<section class="block">
+					<div class="block-content">
+						<ul class="item-list">
+							<li v-for="(item, index) in loadDate" :key="index" @click="linkInvestDetail(item.investInfoId)">
+								<div class="item-list-title">
+									回款期数 (
+									<span v-text="item.countInvested+'/'+item.countInvest"></span>)
+									<a href="javascript:;" class="more" v-text="item.investTime"></a>
+								</div>
+								<div class="item_cont">
+									<div>
+										<div class="item-left">
+											<h1>
+												<span v-text="item.rewardRate==='0.0'?item.borrowRate:(parseFloat(item.borrowRate)-parseFloat(item.rewardRate)).toFixed(1)">
+												</span>%
+												<span class="tip" v-if="item.rewardRate !== '0.0'">
+													+
+													<span v-text="item.rewardRate+'%'"></span>
+												</span>
+											</h1>
+											<p>约定年化收益</p>
+										</div>
+										<div class="item-right">
+											<h6>期限
+												<span v-text="item.borrowDuration"></span>
+											</h6>
+											<p class="item-title" v-text="item.borrowName"></p>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+			</div>
+			<div class="no-jilu" v-else>
+				<img src="/skins/new/images/touzi-no.png" alt="">
+				<div class="no-more">暂无记录</div>
+			</div>
+		</div>
+		<div class="project_ls" v-show="blockArr == 2">
+			<div v-if="endDate.length > 0">
+				<section class="block">
+					<div class="block-content">
+						<ul class="item-list">
+							<li v-for="(item, index) in endDate" :key="index" @click="linkInvestDetail(item.investInfoId)">
+								<div class="item-list-title">
+									回款期数 (
+									<span v-text="item.countInvested+'/'+item.countInvest"></span>)
+									<a href="javascript:;" class="more" v-text="item.investTime"></a>
+								</div>
+								<div class="item_cont">
+									<div>
+										<div class="item-left">
+											<h1>
+												<span v-text="item.rewardRate==='0.0'?item.borrowRate:(parseFloat(item.borrowRate)-parseFloat(item.rewardRate)).toFixed(1)">
+												</span>%
+												<span class="tip" v-if="item.rewardRate !== '0.0'">
+													+
+													<span v-text="item.rewardRate+'%'"></span>
+												</span>
+											</h1>
+											<p>约定年化收益</p>
+										</div>
+										<div class="item-right">
+											<h6>期限
+												<span v-text="item.borrowDuration"></span>
+											</h6>
+											<p class="item-title" v-text="item.borrowName"></p>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<input type="button" :value="loadTxt" class="btn_load_more" @click="loadMore">
+			</div>
+			<div class="no-jilu" v-else>
+				<img src="/skins/new/images/touzi-no.png" alt="">
+				<div class="no-more">暂无记录</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/new_js/account.js"></script>
+	<script>
+		vms.myinvest();
+	</script>
+</body>
+</html>

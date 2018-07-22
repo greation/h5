@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>安全保障</title>
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/about.css" />
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+    <script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+    <script src="/js/public.js"></script>
+</head>
+<body>
+<style>
+    html,body{background: #F8F8F8;}
+    .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+        position: relative;
+        bottom: 40px;
+        left: 0;
+        width: 100%;
+    }
+</style>
+@@include('../include/head.html',{ "title":"安全保障", "isback":true })
+<div class="tabar">
+    <div class="testin" style="overflow-x: auto">
+        <ul class="tabbar">
+            <li ><a href="/src/about/bank.html" >银行存管</a></li>
+            <li><a href="/src/about/safekeyfund.html" >风险控制</a></li>
+            <li ><a href="/src/about/aqbz.html" >保障方式</a></li>
+            <li class="cur"><a href="/src/about/skmessage.html" >审核信息</a></li>
+            <li><a href="/src/about/flaw.html" >法律合规</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="skxx" v-cloak>
+<div class="cwsjbg" v-show="financeShow">
+    <div class="sktitle">
+        <span class="mar-l-20" >财务审计报告</span>
+    </div>
+    <div class="swiper-banner swiper-container" style="height: 156px;width: 90%;margin: 20px auto;">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="banner in cwreport">
+                <a  :href="'/src/about/skmessagedetail.html?id='+ banner.id"><img  :src="banner.banner" alt=""></a>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<div class="cwsjbg" v-show="lawyerShow">
+    <div class="sktitle">
+        <span class="mar-l-20">律所合规报告</span>
+    </div>
+    <div class="swiper-ls swiper-container" style="height: 156px;width: 90%;margin: 20px auto;">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="bannerlist in skmessage">
+                <a :href="'/src/about/skmessagedetail.html?id='+ bannerlist.id"><img  :src="bannerlist.banner" alt=""></a>
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<div class="nocontent text-center" v-show="allShow" >
+<img src="/images/yhcg.png" /><br/>
+即将上线
+</div>
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/about.js"></script>
+<script>
+    ga.skmessage();
+    $(document).ready(function () {
+        $(".testin").scrollLeft(50);
+        $(function () {
+            var mySwiper = new Swiper( '.swiper-container', {
+                direction: 'horizontal',
+                loop: true,
+                spaceBetween: 0,
+                pagination : '.swiper-pagination',
+            } )
+            var mySwiperlist = new Swiper( '.swiper-ls', {
+                direction: 'horizontal',
+                loop: true,
+                spaceBetween: 0,
+                pagination : '.swiper-pagination',
+            } )
+        })
+    })
+
+    $(function(){
+        if (APP_FLAG == 'APP_ANDROID' || APP_FLAG == 'APP_IOS') {
+            $("header").hide();
+            $(".navposition .zzdata").css("margin-top","45px");
+            $(".navposition .tabar").css("top","0");
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>兑换卡券</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/account.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body class="bg-white">
+	<div class="co" id="co" v-cloak>
+		<header class="invest-header">
+			<span class="back" onClick="javascript: history.back(-1);;">
+				<img src="/skins/new/images/icon_back.png" alt="">
+			</span>
+			<h1>兑换卡券</h1>
+		</header>
+
+		<div class="investh">
+			<section class="block mar-t-30">
+				<div class="exchange_coupon_code">
+					<span>兑换码 </span>
+					<input type="text" id="exchangeCode" v-model="exchangeCode" maxlength="20" placeholder="请输入您的兑换码" />
+					<img src="/skins/new/images/clear_text.png" v-show="isShowExchangeClear"
+						@click="exchangeClear" class="exchange_coupon_code_clear" />
+				</div>
+			</section>
+			<section class="block mar-t-20">
+				<div class="btn_invest">
+					<button :disabled="isDisabledExchangeCoupon" @click="exchangeCoupon">兑换</button>
+				</div>
+			</section>
+		</div>
+	</div>
+	<script src="/js/new_js/account.js"></script>
+	<script>
+		vms.mycoupon();
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>福“汪”迎新 豪礼四重奏</title>
+  <link rel="stylesheet" href="/skins/default/css/public.css" />
+  <link rel="stylesheet" href="/src/activity/spring_festival/css/activity.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+  <script src="/js/zepto.min.js"></script>
+  <script src="js/public.js"></script>
+  <script src='js/sensore.js'></script>
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script>
+    util.wxShareMain({
+      //如果如要debug加添参数debug为true
+      title: '福“汪”迎新 豪礼四重奏',
+      desc: '0元享iPhone X 千元卡券赠不停',
+      link: Helper.webPath + '/src/activity/spring_festival/index.html',
+      imgUrl: Helper.webPath + '/src/activity/spring_festival/images/wxshare.jpg',
+      successEvt: function () {
+        window.location.href = '/src/activity/spring_festival/index.html?random=' + parseInt(Math.random() *
+          100000);
+      },
+      cancelEvt: function () {
+        //
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container" id="index">
+    <div class="imgs">
+      <div class="relative main_img_box">
+        <img src="images/img01.jpg" alt="">
+      </div>
+      <div class="relative main_img_box">
+        <img src="images/img02.jpg" alt="">
+        <span class="act_time act_time01">——<span v-text="datas.TIME_STR_1"></span>——</span>
+        <span class="btn_rule btn_rule_one"></span>
+        <span class="link_invest_list" @click="linkInvestList"></span>
+      </div>
+      <div class="relative main_img_box">
+        <img src="images/img03.jpg" alt="">
+        <span class="act_time act_time02">——<span v-text="datas.TIME_STR_2"></span>——</span>
+        <span class="link_make link_make01 fs24" @click="linkMake('1')">立即约标</span>
+        <span class="btn_rule btn_rule_two"></span>
+      </div>
+      <div class="relative main_img_box">
+        <img src="images/img04.jpg" alt="">
+        <span class="link_make link_make02 fs24" @click="linkMake('2')">立即约标</span>
+        <span class="link_make link_make03 fs24" @click="linkMake('3')">立即约标</span>
+      </div>
+      <div class="relative main_img_box">
+        <img src="images/img05.jpg" alt="">
+        <span class="link_make link_make04 fs24" @click="linkMake('4')">立即约标</span>
+        <span class="link_make link_make05 fs24" @click="linkMake('5')">立即约标</span>
+      </div>
+      <div class="relative main_img_box">
+        <img src="images/img06.jpg" alt="">
+        <span class="act_time act_time03">——<span v-text="datas.TIME_STR_3"></span>——</span>
+        <span class="btn_rule btn_rule_three"></span>
+        <span class="btn_done btn_done01 fs20" v-text="initData.statusOne[oneIndex]" @click="receivePoint('oneIndex','LEVELONE')"></span>
+        <span class="btn_done btn_done02 fs20" v-text="initData.statusTwo[twoIndex]" @click="receivePoint('twoIndex','LEVELTWO')"></span>
+      </div>
+      <div class="relative main_img_box">
+        <img src="images/img07.jpg" alt="">
+        <span class="btn_done btn_done03 fs20" v-text="initData.statusThree[threeIndex]" @click="receivePoint('threeIndex','LEVELTHREE')"></span>
+        <span class="btn_done btn_done04 fs20" v-text="initData.statusFour[fourIndex]" @click="receivePoint('fourIndex','LEVELFOUR')"></span>
+        <span class="lottry_x fs22" v-text="initData.statusIphonex[iphonexIndex]" @click="receivePoint('iphonexIndex','LEVELFIVE')"></span>
+      </div>
+      <div class="relative main_img_box">
+        <img src="images/img08.jpg" alt="">
+        <div class="tip_img hide"><img src="images/invest_tip_img.png" alt=""></div>
+        <span class="invest_money fs28" v-if="isLogin">您当前累计的年化投资金额为<span v-text="datas.investMoneyByYear"></span>元<img src="images/invest_tip.png" alt="" class="invest_tip mar-l-5"></span>
+        <span class="act_time act_time04">——<span v-text="datas.TIME_STR_4"></span>——</span>
+        <span class="btn_rule btn_rule_four"></span>
+        <span class="btn_receive_pack" @click="recivePack"></span>
+      </div>
+      <div class="relative main_img_box">
+        <img src="images/img09.jpg" alt="">
+      </div>
+    </div>
+  
+  <div class="modal-rule hide">
+    <div class="clearfix">
+      <img src="images/btn_close.png" class="btn-close pull-right" alt="" width="44" height="44">
+    </div>
+    <div class="txt-cont">
+      <h3 class="text-center">活动规则</h3>
+      <div class="txt-gz hide" v-html="datas.RULE_1">
+
+      </div>
+      <div class="txt-gz hide" v-html="datas.RULE_2">
+      
+      </div>
+      <div class="txt-gz hide" v-html="datas.RULE_3">
+      
+      </div>
+      <div class="txt-gz hide" v-html="datas.RULE_4">
+     
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="/js/vue.min.js"></script>
+  <script src="js/activity.js"></script>
+  <script>
+    vm.index();
+  </script>
+</body>
+</html>

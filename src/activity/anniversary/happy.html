@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>2周年狂欢Party，福利盛宴重磅来袭</title>
+  <link rel="stylesheet" href="/skins/new/css/public.css" />
+  <link rel="stylesheet" href="/src/activity/anniversary/css/base.css" />
+  <script src="/js/new_js/zepto.min.js"></script>
+  <script src="/js/new_js/public.js"></script>
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<script>
+</script>
+<script>
+  util.wxShareMain({
+    //如果如要debug加添参数debug为true
+    title: '2周年狂欢Party，福利盛宴重磅来袭',
+    desc: '四重好礼，惊喜不可错过',
+    link: Helper.webPath + '/src/activity/anniversary/index.html',
+    imgUrl: Helper.webPath + '/src/activity/anniversary/images/share.jpg',
+    successEvt: function () {
+      window.location.href = '/src/activity/anniversary/index.html?random=' + parseInt(Math.random() * 100000);
+    },
+    cancelEvt: function () {
+      //
+    }
+  });
+</script>
+<style type="text/css">
+</style>
+
+<body>
+  <div id="activity" class="activity">
+    <div class="head">
+      <img src="/src/activity/anniversary/images/head-img1.jpg" alt="">
+      <img src="/src/activity/anniversary/images/head-img2.jpg" alt="">
+      <img src="/src/activity/anniversary/images/head-img3.jpg" alt="">
+      <a href="javascript:;" @click="isShowRule = true" class="rule-btn">
+        <img src="/src/activity/anniversary/images/rule-img.png" alt="" width="50%">
+      </a>
+    </div>
+    <div class="content">
+      <div class="title">
+        <img src="/src/activity/anniversary/images/happy-title.png" alt="" width="50%">
+      </div>
+      <div class="happy-desc">
+        2018年7月15日-9月9日
+        <br/> 投资含“2周年”标识的活动标的即享<span>积分翻倍</span>
+      </div>
+      <div class="happy-btn">
+        <a href="javascript:;" @click="toInvest">
+          <img src="/src/activity/anniversary/images/happy-btn.png" alt="">
+        </a>
+      </div>
+      <div class="hayyp-project">
+        <a @click="projectLink('http://www.mylinkbuy.com/index.php/Mobile/Goods/goodsInfo/id/3817.html', 'happy.html')" href="javascript:;">
+          <img src="/src/activity/anniversary/images/happy-pro-img1.png" alt="">
+        </a>
+        <a @click="projectLink('http://www.mylinkbuy.com/Mobile/Goods/goodsInfo/id/3670.html', 'happy.html')" href="javascript:;">
+          <img src="/src/activity/anniversary/images/happy-pro-img2.png" alt="">
+        </a>
+      </div>
+
+      <div class="copyright">
+        本活动与苹果公司无关
+        <br/> 借贷有风险，理财需谨慎
+        <br/> 宜泉资本提醒您：请勿相信任何承诺投资返现的虚假信息
+        <br/> 如对本活动有疑问，请拨打客服电话：400-109-2626
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="index.html" :class="footerIndex == 1?'active':''">
+        <img src="/src/activity/anniversary/images/footer-img1.png" alt="">
+      </a>
+      <a href="happy.html" :class="footerIndex == 2?'active':''">
+        <img src="/src/activity/anniversary/images/footer-img2.png" alt="">
+      </a>
+      <a href="wish.html" :class="footerIndex == 3?'active':''">
+        <img src="/src/activity/anniversary/images/footer-img3.png" alt="">
+      </a>
+    </div>
+
+    <div class="shadow" v-show="isShowRule"></div>
+    <div class="rule-box" v-show="isShowRule">
+      <div class="box">
+        <img src="/src/activity/anniversary/images/close-icon.png" class="close" @click="isShowRule = false" />
+        <h3>活动规则</h3>
+        <div class="box-content" v-html="happyRuleData"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script src="/js/new_js/vue.min.js"></script>
+<script src="/src/activity/anniversary/js/activity.js"></script>
+<script>
+  util.setCookieHandle(function () {
+    vm.activity();
+  })
+</script>
+
+</html>

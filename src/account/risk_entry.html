@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="format-detection" content="telephone=no" />
+  <title>用户风险评估</title>
+  <link rel="stylesheet" href="/skins/default/css/public.css">
+  <link rel="stylesheet" href="/skins/default/css/account.css">
+  <link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css">
+  <script src="/js/zepto.min.js"></script>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/public.js"></script>
+  <script src="/plugins/swiper/swiper.min.js"></script>
+</head>
+
+<body>
+  <style>
+    body {
+      background: #ffffff;
+    }
+  </style>
+  @@include('../include/head.html',{ "title":"用户风险评估", "isback":"true" })
+  <div class="container rr" id="rr">
+    <div class="text-center mar-t-40"><img src="/images/icon_risk.jpg" alt="" width="120"></div>
+    <p class="pad-l-15 pad-r-15 mar-t-20 color-gray text-center">
+      您此次风险评测仅用于向您个人展示
+      <br> 如果信息已发生修改，您可点击修改
+    </p>
+    <div class="pad-l-15 pad-r-15">
+      <a href="/src/account/risk_assessment.html">
+        <input type="button" class="btn_ok" value="开始风险评测">
+      </a>
+    </div>
+
+  </div>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/account.js"></script>
+  <script>
+    var hrefData = util.hrefSplit(window.location.href);
+    if(!hrefData.backUrl){
+      hrefData.backUrl = '/src/account/index.html';
+    }
+    localStorage.setItem('riskCallBackUrl',hrefData.backUrl);
+  </script>
+</body>
+
+</html>

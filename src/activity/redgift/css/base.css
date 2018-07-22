@@ -1,0 +1,137 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+
+html,body{background:#752cff}
+/*注册*/
+.container{background: #ffd5ab;}
+
+img{vertical-align: bottom;
+vertical-align: top;}
+.re .form{
+	padding: 40px 15px 0 15px;
+}
+.c4e{color: #4e73b4 !important;}
+/*.one,.two{background: #ffd5ab;}
+.one1,.two1{background:#de353b;}*/
+.cff{color: #fff !important;}
+
+.btnlink{position: relative;height: 0;width: 100%;}
+.btnlinka{width: 30%;position: relative;height: 60px;left: 0;top: -15px;display: block;z-index: 9;}
+.rightget{width: 60%;position: relative;height: 60px;left: 36%;top: -40px;display: block;z-index: 9;}
+.rightget1{width: 60%;position: relative;height: 60px;left: 20%;top: -93px;display: block;z-index: 9;}
+/*util相关*/
+.util_alert_bg{
+	position: fixed;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity:0.6;
+}
+.weui_dialog {
+  position: fixed;
+  z-index: 13;
+  width: 76%;
+  top: 30%;
+  left: 12%;
+  background-color: #fafafc;
+  text-align: center;
+  border-radius: 3px;
+}
+.weui_dialog_hd {
+  padding: 1.2em 0 .5em;
+}
+.weui_dialog_title {
+    font-weight: 400;
+    font-size: 17px;
+}
+.weui_dialog_bd {
+  padding: 30px 30px 20px 30px;
+  color: #888;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-align: center;
+}
+.weui_dialog_ft {
+  position: relative;
+  line-height: 42px;
+  border-top:#e5e5e5 1px solid;
+  display: flex;
+}
+.weui_btn_dialog.primary:nth-child(2) {
+  color: #1e82ff;
+  border-left:#e5e5e5 1px solid;
+}
+.weui_dialog_ft a {
+  display: block;
+  flex: 1;
+  text-decoration: none;
+  color:#1e82ff;
+}
+.layer_bg{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	background: #fff;
+	z-index: 1000;
+	opacity: 0;
+}
+.util_toast_box{
+	position: fixed;
+	width: 100%;
+	z-index: 111111;
+    bottom: 50%;
+    left: 0;
+	display: flex;
+	justify-content:center;
+	transition:opacity 0.5s;
+}
+
+.util_toast{
+  max-width: 80%;
+  padding:10px;
+  background: #000;
+  opacity:0.6;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.errorphone{width: 80%;}.errorphone1{width:55%;}.errorphone2{width: 55%;}.errorphone3{width: 80%;}
+.errortip{color: red;position: absolute;top:5px;font-size: 0.875rem;background: #fff;height:40px;line-height: 40px;left: 40px;}
+
+.goinvesting{
+	height:60%;
+	width:54%;display: block;position: absolute;left: 50%;margin-left: -27%;
+	top:28px;border-radius: 30px;}
+.status{width: 70%;height: 110px;position: absolute;top: 15px;left: 50%;margin-left: -35%;display: block;}
+.redgift{width: 25%;height: 130px;display:block;position: absolute;z-index: 2;background-size:contain;}
+.redgift1{left: 20px;
+    top: -30px;}
+.redgift2{left: 50%;top: -30px;margin-left: -12.5%}
+.redgift3{
+    right: 20px;top: -30px;}
+.yellowbg{background: url(../images/yellowbg_1.png)no-repeat;background-size:contain}
+.yellowbg1{background: url(../images/yellowbg_2.png)no-repeat;background-size:contain}
+.yellowbg2{background: url(../images/yellowbg_3.png)no-repeat;background-size:contain}
+.graybg{background: url(../images/graybg_1.png)no-repeat;background-size:contain}
+.graybg1{background: url(../images/graybg_2.png)no-repeat;background-size:contain}
+.graybg2{background: url(../images/graybg_3.png)no-repeat;background-size:contain}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

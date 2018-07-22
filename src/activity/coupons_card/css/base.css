@@ -1,0 +1,46 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+body {
+	background: #ffe100;
+}
+.activity {
+	max-width: 750px;
+	margin: 0 auto;
+}
+
+img {
+	max-width: 100%;
+}
+.content {
+	padding: 0 20px;	
+}
+.content img {
+	padding: 3rem 0;
+}
+.content .button {
+	text-align: center;
+}
+.content .button button {
+	background: #0057a9;
+	text-align: center;
+	padding: 1rem;
+	color: #fff;
+	font-size: 1.5rem;
+	display: inline-block;
+	width: 90%;
+	margin: 0 auto;
+}
+.content p {
+	font-size: 12px;
+	width: 90%;
+	margin: 1rem auto;
+}
+.tip {
+	color: #e60012;
+	font-size: 16px;
+}
+.tip p {
+	margin-top: 5px;
+	color: #999;
+	font-size: 14px;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>安全保障</title>
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/about.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+    <script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+    <script src="/js/vue.min.js"></script>
+    <script src="/js/public.js"></script>
+</head>
+<body>
+@@include('../include/head.html',{ "title":"安全保障", "isback":true })
+<div class="tabar">
+    <div class="testin" style="overflow-x: auto">
+        <ul class="tabbar">
+            <li class="cur"><a href="/src/about/bank.html" >银行存管</a></li>
+            <li><a href="/src/about/safekeyfund.html" >风险控制</a></li>
+            <li><a href="/src/about/aqbz.html" >保障方式</a></li>
+            <li><a href="/src/about/skmessage.html" >审核信息</a></li>
+            <li><a href="/src/about/flaw.html" >法律合规</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="nocontent text-center" >
+    <img src="/images/yhcg.png" /><br/>
+    即将上线
+</div>
+<script>
+    $(function(){
+        if (APP_FLAG == 'APP_ANDROID' || APP_FLAG == 'APP_IOS') {
+            $("header").hide();
+            $(".navposition .zzdata").css("margin-top","45px");
+            $(".navposition .tabar").css("top","0");
+        }
+    })
+</script>
+</body>
+</html>

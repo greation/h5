@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>标的详情</title>
+  <link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+  <link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+  <link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+  <!-- <script src="/js/new_js/jquery-3.3.1.min.js"></script> -->
+  <script src="/js/new_js/zepto.min.js"></script>
+  <script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+  <script src="/js/new_js/vue.min.js"></script>
+  <script src="/js/new_js/public.js"></script>
+</head>
+
+<body>
+
+  <div id="invest" class="invest" v-cloak>
+    <header class="invest-header">
+      <span class="back" onClick="javascript :history.back(-1);">
+        <img src="/skins/new/images/icon_back.png" alt="">
+      </span>
+      <h1 v-if="data.borrow" v-text="data.borrow.borrowName?data.borrow.borrowName:'标的详情'"></h1>
+    </header>
+    <div class="header10"></div>
+
+    <section class="block invest-desc-block">
+      <div class="block-content">
+        <ul class="item-list">
+          <li>
+            <div class="item_cont" v-if="data.borrow">
+              <div>
+                <div class="item-left">
+                  <p>约定年化收益</p>
+                  <h1>
+                    <span v-text="data.borrow.borrowRate"></span>%
+                    <span class="tip" v-if="data.borrow.addRate > 0">+
+                      <span v-text="data.borrow.addRate"></span>%</span>
+                  </h1>
+                </div>
+                <div class="item-right">
+                  <p>期限</p>
+                  <h1 v-text="data.borrow.borrowDuration"></h1>
+                </div>
+              </div>
+              <div class="tags">
+                <span v-if="data.borrow.useVoucher == 'CASHVOCHER' || data.borrow.useVoucher == 'CANUSE'">现金券</span>
+                <span v-if="data.borrow.useVoucher == 'CASHCOUPON' || data.borrow.useVoucher == 'CANUSE'">加息券</span>
+                <span class="color" v-if="data.borrow.activityTag" v-text="data.borrow.activityTag"></span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <div class="hr10"></div>
+
+    <div v-if="data.borrow">
+      <!--房月盈标的（含预约房、新手房））-->
+      <template v-if="(data.borrow.borrowType==='GYHOUSE'||data.borrow.borrowType==='MAKE'||data.borrow.borrowType==='NEWUSER')&&data.borrowUserType!=='ENTERPRISE'">
+        <section class="block" style="height: 166px;overflow: hidden;margin-bottom: 10px;">
+          <div class="block-title">
+            风险控制
+          </div>
+          <div class="block-content">
+            <div class="swiper-fengxian-3">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-chanquan.png" alt="">
+                  <p>不动产权利人</p>
+                </div>
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-zhiye.png" alt="">
+                  <p>置业公司担保</p>
+                </div>
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-jianzheng.png" alt="">
+                  <p>律师见证</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </template>
+
+      <!--企业 新手、企业、个人 预约房月盈企业-->
+      <template v-else-if="(data.borrow.borrowType==='GYHOUSE'|| data.borrow.borrowType==='MAKE' || data.borrow.borrowType==='NEWUSER')&&data.borrowUserType==='ENTERPRISE'">
+        <section class="block" style="height: 166px;overflow: hidden;margin-bottom: 10px;">
+          <div class="block-title">
+            风险控制
+          </div>
+          <div class="block-content">
+            <div class="swiper-fengxian-3">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-danbao.png" alt="">
+                  <p>不动产担保</p>
+                </div>
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-jianzheng.png" alt="">
+                  <p>律师见证/公证</p>
+                </div>
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-weituo.png" alt="">
+                  <p>全权委托</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </template>
+
+      <!--个人和企业   车满盈、预约专享-车满盈 -->
+      <template v-else-if="data.borrow.borrowType==='GYCAR'|| data.borrow.borrowType==='MAKECAR'">
+        <section class="block" style="height: 166px;overflow: hidden;margin-bottom: 10px;">
+          <div class="block-title">
+            风险控制
+          </div>
+          <div class="block-content">
+            <div class="swiper-fengxian">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-danbao.png" alt="">
+                  <p>足额抵押担保</p>
+                </div>
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-fengkong.png" alt="">
+                  <p>严格风控把控</p>
+                </div>
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-jishu.png" alt="">
+                  <p>专业技术保障</p>
+                </div>
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-falv.png" alt="">
+                  <p>法律保障</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </template>
+
+      <!--房月盈租赁个人icon文案 -->
+      <template v-else-if="data.borrow.borrowType==='GYLEASE' && data.borrowUserType==='PERSON'">
+        <section class="block" style="height: 166px;overflow: hidden;margin-bottom: 10px;">
+          <div class="block-title">
+            风险控制
+          </div>
+          <div class="block-content">
+            <div class="swiper-fengxian-3">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-zujin.png" alt="">
+                  <p>稳定的租金收入</p>
+                </div>
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-danbao.png" alt="">
+                  <p>租赁公司担保</p>
+                </div>
+                <div class="swiper-slide">
+                  <img src="/skins/new/images/icon-beian.png" alt="">
+                  <p>备案登记</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </template>
+
+      <template v-else-if="data.borrow.borrowType==='GYQIXIN' || data.borrow.borrowType==='MAKEQIXIN'">
+        <section class="block" style="height: 116px;overflow: hidden;margin-bottom: 10px;">
+          <div class="block-title">
+            风险控制
+          </div>
+          <div class="block-content-qxy">
+            <img src="/skins/new/images/icon-qxy-zhq.png" alt="">债券回购承诺
+          </div>
+        </section>
+      </template>
+      </div>
+
+      <section class="block" v-if="data.borrow">
+        <div class="swiper-tabs">
+          <div class="tabs">
+            <a hidefocus="true" class="active">产品详情</a>
+            <a hidefocus="true">项目介绍</a>
+            <a hidefocus="true">投资记录</a>
+          </div>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="swiper-slide-list">
+                  <div class="content-slide">
+                    <div class="slide-th">
+                      <span>01</span>基本信息
+                      <em class="down"></em>
+                    </div>
+                    <div class="slide-td">
+                      <p>标的总额：<span v-text="data.borrow.borrowMoney + '元'"></span></p>
+                      <p>起投金额：
+                        <span v-text="data.borrow.minInvest"></span>元起投</p>
+                      <p>起息方式：T（放款当日）</p>
+                      <p>回款方式：
+                        <span v-text="data.borrow.repaymentType"></span>
+                      </p>
+                    </div>
+                  </div>
+                  <!-- <div class="content-slide" v-if="data.borrow.borrowType === 'GYHOUSE' || data.borrow.borrowType === 'MAKE' || data.borrow.borrowType === 'GYLEASE'"> -->
+                  <div v-if="(data.borrow.borrowType === 'GYLEASE' && data.borrowUserType=='ENTERPRISE') || data.borrow.borrowType == 'GYCAR'|| data.borrow.borrowType == 'MAKECAR'"
+                    key="chanpinliangdian"></div>
+                  <div class="content-slide" v-else key="chanpinliangdian">
+                    <div class="slide-th">
+                      <span>02</span>产品亮点
+                      <em class="down"></em>
+                    </div>
+                    <div class="slide-td hide">
+                      <template v-if="(data.borrow.borrowType==='GYHOUSE'|| data.borrow.borrowType==='GYLEASE' || data.borrow.borrowType==='MAKE')&&data.borrowUserType!=='ENTERPRISE'">
+                        <p v-if="data.borrow.borrowType=='GYLEASE'">
+                          租赁公司提供担保，保障还款
+                          <br> 租赁合同备案管理，真实可靠
+                        </p>
+                        <p v-else>
+                          置业公司提供担保，保障还款
+                          <br/> 真实房屋买卖交易，权益受保护
+                        </p>
+                      </template>
+                      <template v-if="(data.borrow.borrowType==='GYHOUSE' || data.borrow.borrowType==='MAKE' || data.borrow.borrowType == 'NEWUSER')&&data.borrowUserType=='ENTERPRISE'">
+                        <p>上海本地房产资产配置，收益稳健
+                          <br/>律所及公证处权威公正，权益保障</p>
+                      </template>
+                      <template v-if="data.borrow.borrowType === 'GYQIXIN' || data.borrow.borrowType==='MAKEQIXIN'">
+                        <p>上海本地企业信用借款
+                          <br/>债权回购承诺                          
+                        </p>
+                      </template>
+                    </div>
+                  </div>
+                  <div class="content-slide">
+                    <div class="slide-th">
+                      <span v-text="(data.borrow.borrowType === 'GYLEASE' && data.borrowUserType=='ENTERPRISE') || data.borrow.borrowType == 'GYCAR' || data.borrow.borrowType == 'MAKECAR' ?'02':'03'"></span>产品介绍
+                      <em class="down"></em>
+                    </div>
+                    <div class="slide-td hide">
+                      <p v-text="data.borrow.productDesc"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="swiper-slide-list">
+                  <div class="content-slide" v-for="(item, index) in carIntroList">
+                    <div class="slide-th">
+                      <span v-text="'0' + (index + 1)"></span>
+                      <strong v-text="item.title"></strong>
+                      <em class="down"></em>
+                    </div>
+                    <div class="slide-td hide">
+                      <p v-for="childItem in item.content">
+                        <span v-if="childItem.title" class="info_key" v-text="childItem.title"></span>
+                        <span class="info_value" v-text="childItem.content"></span>
+                        <span class="info_value" v-text="childItem.name"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="hr10" v-if="carIntroList.length > 0">
+                </div>
+
+                <a :href="'audit_information.html?borrowId=' + data.borrow.borrowId" class="swiper-slide-block no-border">
+                  审核资料
+                  <img src="/skins/new/images/jt_right.png" alt="">
+                </a>
+                <div class="hr10"></div>
+                <div class="swiper-slide-block">
+                  <strong>其他</strong>
+                </div>
+                <template v-if="data.borrowUserType==='PERSON'">
+                  <a href="grebook.html" class="swiper-slide-block">
+                    电子协议
+                    <img src="/skins/new/images/jt_right.png" alt="">
+                  </a>
+                </template>
+                <template v-else>
+                  <a :href="data.borrow.borrowType === 'GYQIXIN'|| data.borrow.borrowType==='MAKEQIXIN'?'ebook_qxy.html':'ebook.html'" class="swiper-slide-block">
+                    电子协议
+                    <img src="/skins/new/images/jt_right.png" alt="">
+                  </a>
+                </template>
+
+                <a href="fxbook.html" class="swiper-slide-block no-border">
+                  风险揭示书
+                  <img src="/skins/new/images/jt_right.png" alt="">
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <div v-if="jilus.length > 0">
+                  <table class="swiper-slide-table">
+                    <tr>
+                      <th>投资人</th>
+                      <th>投资金额（元）</th>
+                      <th>投资时间</th>
+                    </tr>
+                    <tr v-for="(item, index) in jilus" :key="index">
+                      <td v-text="item.investUserName"></td>
+                      <td v-text="(item.investMoney/100).toLocaleString()"></td>
+                      <td v-text="item.investHisTime"></td>
+                    </tr>
+                  </table>
+                  <!-- <div class="more" @click="loadMore" v-text="loadTxt"></div> -->
+                </div>
+                <div v-else>
+                  <img src="/skins/new/images/touzi-no.png" alt="" style="width:46px;margin: 63px auto 10px auto;display: block;">
+                  <div class="no-more">暂无投资记录</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="hr60"></div>
+
+      <footer v-if="data.borrow">
+        剩余可投
+        <span v-if="data.borrow" v-text="data.borrow.surplusInvestMoney">
+        </span>
+        <button class="btn" @click="btnLj(data.borrow.borrowId)" 
+          :disabled="data.borrow.surplusInvestMoney == '0元' || data.borrow.borrowStatus === 'END' || data.borrow.borrowStatus==='REPAYMENTED' || data.borrow.borrowStatus==='REPAYMENTING' || data.borrow.borrowStatus==='LOSSED'"
+          v-text="data.borrow.borrowStatus === 'END' || data.borrow.borrowStatus==='REPAYMENTED' || data.borrow.borrowStatus==='REPAYMENTING' || data.borrow.borrowStatus==='LOSSED'?'已结束':'立即投资'">
+        </button>
+      </footer>
+      <!-- <div id="toTop" onclick="$(document).scrollTop(0);">
+        <img src="/images/backup.png" />
+    </div> -->
+    </div>
+
+    <script src="/js/new_js/invest_detail.js" charset="UTF-8"></script>
+    <script>
+      iv.invest();
+    </script>
+</body>
+
+</html>

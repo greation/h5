@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>回款计划</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body class="mi hp">
+
+	<div class="invest" id="hd">
+		<header>
+			<span class="back" onClick="javascript :history.back(-1);">
+				<img src="/skins/new/images/icon_back.png" alt="">
+			</span>
+			<h1>回款计划</h1>
+		</header>
+		<section class="block">
+			<div class="invest-nav">
+				<div :class="{active:activeArr[0]}" @click="activePage(0)">待收款项</div>
+				<div :class="{active:activeArr[1]}" @click="activePage(1)">已收款项</div>
+			</div>
+		</section>
+		<div class="hr10"></div>
+		<div class="project_ls">
+			<section class="block">
+				<div class="block-content">
+					<ul class="item-list">
+						<li v-for="(plan, index) in investPlan" :key="index">
+							<div class="item-list-title">
+								<span v-text="'第'+plan.curRecNum+'期('+plan.curRecNum+'/'+plan.totalRecNum+')'"></span>
+								<a href="javascript:;" class="more" v-text="plan.loanTime"></a>
+								<template v-if="plan.status==='已收款' && plan.remark!=''">
+									<template v-if="plan.remark">
+										<img src="/images/doubt.png" class="plan-help" @click="remark()" />
+									</template>
+								</template>
+							</div>
+							<div class="item_cont">
+								<p class="hk-div">
+									利息
+									<span v-text="plan.recInterestMoney + '元'"></span>
+								</p>
+								<p class="hk-div">
+									本金
+									<span v-text="plan.recBaseMoney + '元'"></span>
+								</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<p class="no-jilu" :style="{display:this.investPlan<1?'block':'none'}">
+				<img src="/skins/new/images/touzi-no.png" alt="">
+				<br/>暂无记录
+			</p>
+		</div>
+	</div>
+	<script src="/js/new_js/account.js"></script>
+	<style>
+		.weui_dialog_bd p {
+			margin-bottom: 10px;
+			margin-top: -10px;
+		}
+	</style>
+	<script>
+		vms.receivePlan();
+
+		$(function () {
+			if (title == "no") {
+				$("header").hide();
+			}
+		});
+	</script>
+</body>
+
+</html>

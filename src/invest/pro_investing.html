@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>确认投资</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body>
+	<div class="pad-b-60">
+		<header class="invest-header">
+			<span class="back" onClick="javascript :history.back(-1);">
+				<img src="/skins/new/images/icon_back.png" alt="">
+			</span>
+			<h1>确认投资</h1>
+		</header>
+		<div class="header10"></div>
+
+		<div class="hr10"></div>
+
+		<div id="expressId" class="investh">
+			<div class="cardc" @click="getCard()">
+				<input type="hidden" id="token" :value="data.token">
+				<img src="/skins/new/images/icon-coupon.png" />
+				<div class="cardc-right">
+					<h1>优惠券</h1>
+					<p id="expresCa">						
+						<em>可用1张</em>
+					</p>
+				</div>
+				<span>
+					<img src="/skins/new/images/jt_right.png" alt="">
+				</span>
+			</div>
+
+			<input type="hidden" id="token" :value="data.token">
+			<div class="hr10"></div>
+
+			<div class="btn_invest">
+				<button @click="ljInvesting()" :disabled="isInvestDisabled">确认投资</button>
+			</div>
+
+		</div>
+	</div>
+	<script src="/js/new_js/invest.js"></script>
+	<script>
+		iv.investing();
+	</script>
+</body>
+
+</html>

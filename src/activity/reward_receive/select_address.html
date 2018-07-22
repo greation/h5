@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>地址选择</title>
+  <link rel="stylesheet" href="/skins/default/css/public.css" />
+  <link rel="stylesheet" href="/skins/default/css/account.css" />
+  <link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css" />
+  <link rel="stylesheet" href="/src/activity/reward_receive/css/activity.css" />
+  <script src="/js/zepto.min.js"></script>
+  <script src="/js/public.js"></script>
+</head>
+<body class="ad">
+  @@include('../../include/head.html',{ "title":"地址选择", "isback":"true;/src/activity/reward_receive/index.html" })
+  <div class="container address_select" id="address_list">
+    <div class="address_list">
+      <div class="item" v-for="item in data">
+        <div class="info">
+          <div class="detail">
+            <div class="cur_select mar-r-15" v-if="item.id===hrefJson.addressId">
+              <img src="./images/default_address.png" alt="" width="20">
+            </div>
+            <div class="address_detail" @click="chooseAddress(item.id)">
+              <p class="fs28">
+                <span v-text="item.receiver"></span>
+                <span v-text="item.mobile" class="pull-right"></span>
+              </p>
+              <p class="fs24 cbbb mar-t-5">
+                <span v-text="item.provinceName"></span>
+                <span v-text="item.cityName"></span>
+                <span v-text="item.areaName"></span>
+                <span v-text="item.detailAddress"></span>
+              </p>
+            </div>
+            <div class="edit_box">
+              <a :href="'./add_updata_address.html?addressId='+item.id">
+                  <img src="./images/icon_edit.jpg" alt="">
+              </a>
+            </div>
+          </div>
+          <!-- <div class="edit"><i class="icon_edit"></i><a :href="'address_edit.html?addressId='+item.id+''" class="fs20 cbbb">编辑</a></div> -->
+        </div>
+      </div>
+      <div class="text-center pad-t-80 hide" :style="{display:isAddress}">
+        <img src="/images/address_gray.png" alt="" width="80" height="80">
+        <p class="c999 mar-t-5">暂无地址信息</p>
+      </div>
+    </div>
+    <div class="btn_add_box">
+      <a class="link_add_address" href="/src/activity/reward_receive/add_updata_address.html">
+        <img src="./images/icon_add.png" alt="" width="16">
+        <span class="mar-l-10">添加新地址</span>
+      </a>
+    </div>
+  </div>
+  <script src="/js/vue.min.js"></script>
+  <script src="./js/activity.js"></script>
+  <script>
+    vms.address();
+  </script>
+</body>
+
+</html>

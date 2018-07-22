@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="format-detection" content="telephone=no" />
+  <title>风险评测</title>
+  <link rel="stylesheet" href="/skins/default/css/public.css">
+  <link rel="stylesheet" href="/skins/default/css/account.css">
+  <link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css">
+  <script src="/js/zepto.min.js"></script>
+  <script src="/js/public.js"></script>
+  <script src="/plugins/swiper/swiper.min.js"></script>
+</head>
+
+<body>
+  @@include('../include/head.html',{ "title":"风险评测", "isback":"true" })
+  <div class="container ra" id="ra">
+    <div class="subject">
+      <p>
+        <span class="cur_question_index" v-text="curIndex+1">1</span>/
+        <span class="question_count">10</span>
+      </p>
+      <p v-text="subjects[curIndex]">你所处的年龄阶段？</p>
+    </div>
+    <div class="option_box mar-t-30">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide swiper-no-swiping" v-for="question in questions">
+            <div class="option_item" v-for="(option,index) in question.options" v-text="option.optionContent" @click="selected(option.id)">
+              25岁及以下
+            </div>
+            <div class="prev_box text-center mar-t-20 mar-b-20 color-blue" v-if="curIndex!==0" @click="prevQue">
+              上一题
+            </div>
+            <div class="prev_box text-center mar-t-20 mar-b-20 color-gray" v-else="curIndex!==0">
+              上一题
+            </div>
+          </div>
+        </div>
+        <!-- 如果需要分页器 
+          <div class="swiper-pagination"></div>
+        -->
+      </div>
+    </div>
+    
+  </div>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/account.js"></script>
+  <script>
+    util.setCookieHandle(function(){
+        vms.riskAssessment();
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,379 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+
+.activity {
+	max-width: 750px;
+	margin: 0 auto;
+}
+
+.head {
+	position: relative;
+}
+
+.head .rule-btn {
+	position: absolute;
+	bottom: 5px;
+	left: 1.2rem;
+}
+
+.content {
+	background: #ff452c;
+	width: 100%;
+}
+
+.content .title {
+	text-align: center;
+	padding-top: 5px;
+	position: relative;
+}
+
+.wish-list-btn {
+	width: 17%;
+	height: 55%;
+	position: absolute;
+	text-indent: -9999em;
+	top: 25%;
+	left: 50%;
+	margin-left: 26%;
+}
+
+.content .day {
+	text-align: center;
+	padding: 0 25px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.content .day .day-btn {
+	position: absolute;
+	right: 25px;
+	bottom: 0;
+	width: 33.3%;
+}
+
+.content .card {
+	display: flex;
+	padding: 2px 5px;
+}
+
+.content .card>div {
+	padding: 0 5px;
+	position: relative;
+}
+
+.content .card>div .card-btn {
+	position: absolute;
+	right: 7%;
+	top: 28%;
+	width: 27%;
+}
+
+.content .project {
+	display: flex;
+	padding: 10px 20px 0 20px;
+}
+
+.content .project a {
+	display: block;
+	padding: 0 20px;
+}
+
+.content .project a p {
+	width: 90%;
+	margin: 5px auto 0 auto;
+}
+
+.content .copyright {
+	color: #fff;
+	font-size: 12px;
+	-webkit-transform: scale(0.6);
+	-moz-transform: scale(0.6);
+	line-height: 16px;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.shadow {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0, 0, 0, .7);
+	width: 100%;
+	height: 100%;
+}
+
+.rule-box,
+.wish-box,
+.share-box {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+.rule-box .box,
+.wish-box .box {
+	background: #fff;
+	margin: 0 25px;
+	border-radius: 20px;
+	padding: 20px 0;
+	position: relative;
+	width: 90%;
+}
+
+.share-box {
+	align-items: flex-start;
+}
+.share-box img {
+	margin-top: 4rem;
+}
+
+.wish-box .box {
+	border-radius: 0;
+	text-align: center;
+	padding: 0;
+}
+
+.wish-box .box .wish-box-title {
+	border-bottom: 1px #f6f6f6 solid;
+	line-height: 50px;
+	font-weight: bold;
+	color: #333c40;
+}
+
+.wish-box .box .wish-box-title img {
+	width: 20px;
+	float: right;
+	margin: 15px 10px;
+}
+
+.wish-box .wish-list-empty img {
+	width: 130px;
+	margin: 30px 0;
+}
+
+.wish-box .box .wish-list li {
+	padding: 5px 10px;
+	border-bottom: 1px #f6f6f6 solid;
+	display: flex;
+}
+
+.wish-box .box .wish-list li span {
+	color: #333c40;
+	font-size: 12px;
+	display: inline-block;
+	text-align: left;
+	vertical-align: top;
+}
+
+.wish-box .box .wish-list li span.wish-list-time {
+	width: 80px;
+}
+
+.wish-box .box .wish-list li span.wish-list-num {
+	width: 20px;
+	text-align: right;
+}
+
+.rule-box .box .box-content {
+	overflow: auto;
+	padding: 0px 10px;
+	max-height: 400px;
+}
+
+.rule-box .box h3 {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.rule-box .box p {
+	font-size: 14px;
+}
+
+.rule-box .box p span {
+	color: #f00;
+}
+
+.rule-box .box table td {
+	vertical-align: top;
+	font-size: 14px;
+}
+
+.rule-box .close {
+	position: absolute;
+	right: 0;
+	top: -43px;
+	width: 33px;
+}
+
+.footer {
+	background: #fff100;
+	display: flex;
+	padding: 0 20px 10px 20px;
+	height: 50px;
+	align-items: flex-end;
+	text-align: center;
+}
+
+.footer a {
+	display: block;
+	width: 33.33%;
+}
+
+.footer a img {
+	width: 70px;
+}
+
+.footer a.active {
+	padding-bottom: 15px;
+}
+
+.happy-desc {
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
+	line-height: 16px;
+	margin: 10px 0;
+	font-size: 12px;
+}
+
+.wish-desc {
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
+	margin: 0 0 5px 0;
+	font-size: 12px;
+}
+
+.happy-desc span {
+	color: #fff100;
+}
+
+.happy-btn {
+	padding: 0 28%;
+}
+
+.pool {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.pool .pool-box {
+	position: relative;
+	width: 320px;
+	margin: 0 auto;
+}
+
+.pool .pool-box .pool-500-1 {
+	position: absolute;
+	left: 45px;
+	top: 0;
+	width: 120px;
+}
+
+.pool .pool-box .pool-500-2 {
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	width: 120px;
+}
+
+.pool .pool-box .pool-500-3 {
+	position: absolute;
+	left: 15px;
+	top: 120px;
+	width: 120px;
+}
+
+.pool .pool-box .pool-500-4 {
+	position: absolute;
+	right: 10px;
+	top: 145px;
+	width: 145px;
+}
+
+.pool .pool-box .pool-1000-1 {
+	position: absolute;
+	left: 30px;
+	top: 0px;
+	width: 120px;
+}
+
+.pool .pool-box .pool-1000-2 {
+	position: absolute;
+	right: 25px;
+	top: 25px;
+	width: 120px;
+}
+
+.pool .pool-box .pool-1000-3 {
+	position: absolute;
+	left: 25px;
+	top: 130px;
+	width: 120px;
+}
+
+.pool .pool-box .pool-1000-4 {
+	position: absolute;
+	right: 25px;
+	top: 160px;
+	width: 135px;
+}
+
+.pool img {
+	width: 320px;
+	margin: 0 auto;
+}
+
+.pool p {
+	color: #6d0500;
+	text-align: center;
+	font-size: 12px;
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	margin-top: 5px;
+	line-height: 16px;
+}
+
+.pool-input .pool-input-box {
+	background: #ef160c;
+	border-radius: 10px;
+	padding: 8px;
+	margin: 15px auto 0 auto;
+	width: 320px;
+	height: 30px;
+}
+
+.pool-input .pool-input-box .pool-input-style {
+	border: 1px #000 solid;
+	border-radius: 6px;
+	background: #fff;
+	width: 260px;
+	height: 28px;
+	text-indent: .5rem;
+	outline: none;
+}
+
+.pool-input .pool-input-box img {
+	width: 50px;
+	height: 30px;
+	float: right;
+}
+
+.confirm_no,
+.weui_dialog_bd {
+	color: #333c40 !important;
+}
+
+.alert-header {
+	font-size: 1.05rem;
+	margin-bottom: 10px;
+}

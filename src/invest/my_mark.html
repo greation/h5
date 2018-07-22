@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>我的约标</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body>
+	<div id="myMark" class="invest" v-cloak>
+		<header class="invest-header">
+			<span class="back" onClick="javascript:window.location.href='list_all.html?borrowType=2';">
+				<img src="/skins/new/images/icon_back.png" alt="">
+			</span>
+			<h1>
+				我的约标
+			</h1>
+		</header>
+
+		<div class="hr10"></div>
+
+		<section class="block" v-if="data.myMakeBorrowList != null && data.myMakeBorrowList.length > 0">
+			<div class="block-content">
+				<ul class="item-list">
+					<li v-for="(item, index) in data.myMakeBorrowList" :key="index" @click="projectLink(item.borrowId, item.borrowType)">
+						<div class="item_cont">
+							<div>
+								<div class="item-left">
+									<h1>
+										<span v-text="item.borrowRate"></span>%
+										<span class="tip" v-if="item.addRate > 0">+
+											<span v-text="item.addRate"></span>%</span>
+									</h1>
+									<p>约定年化收益</p>
+								</div>
+								<div class="item-right">
+									<h6>期限
+										<span v-text="item.borrowDuration"></span>
+									</h6>
+									<p class="item-title" v-text="item.borrowName"></p>
+								</div>
+							</div>
+							<div class="tags">
+								<span v-if="item.useVoucher == 'CASHVOCHER' || item.useVoucher == 'CANUSE'">现金券</span>
+								<span v-if="item.useVoucher == 'CASHCOUPON' || item.useVoucher == 'CANUSE'">加息券</span>
+								<span class="color" v-if="item.activityTag" v-text="item.activityTag"></span>
+							</div>
+							<div class="progress">
+								<div class="progress-bar">
+									<div class="progress-bar-active" :style="'width:' + item.raiseRate + '%'"></div>
+								</div>
+								<div class="progress-text">
+									剩余可投 {{item.surplusInvestMoney}}
+									<span>{{item.raiseRate}} %</span>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section v-else>
+			<div class="block-content block-my-mark">
+				<img src="/skins/new/images/touzi-no.png" width="50px"/>
+				<p>暂无预约专享标，想要更高专属收益，<br/>赶紧约起来！</p>
+				<button onClick="javascript:window.location.href='list_all.html?borrowType=2';">我要约标</button>
+				<!-- <button @click="yb()">我要约标</button> -->
+			</div>
+		</section>
+
+		<div class="hr10"></div>
+
+		<!--约标password-->
+		<div class="modal-bg hide"></div>
+		<div class="yb-psw hide">
+			<p class="yb-psw-title">约标</p>
+			<div class="ipswbox relative" id="inputPwd" @click="pwdIn">
+				<i>
+					<span class="placeholder">请输入约标密码</span>
+				</i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<input type="text" maxlength="6" v-model="pwdYb" class="pswbtn" id="pswbtn" autocomplete="off" />
+			</div>
+
+			<div class="psw_btn">
+				<button class="pswsure" @click="pswSure">确认</button>
+				<button class="pswcancle" @click="pswCancle">取消</button>
+			</div>
+		</div>
+		<!-- <div id="toTop" onclick="$(document).scrollTop(0);">
+			<img src="/images/backup.png" />
+		</div> -->
+	</div>
+
+	<script src="/js/new_js/my_mark.js"></script>
+	<script>
+		iv.myMark();
+	</script>
+</body>
+
+</html>

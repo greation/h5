@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<title>发现</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/article.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body class="in pb63">
+	<header>
+		<h1>发现</h1>
+	</header>
+	<div id="re" class="find">
+		<section class="block">
+			<div class="banner" v-if="listData.bannerList.length>0">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" v-for="banner in listData.bannerList" onclick="SaFun.banner('','发现banner')">
+							<a :href="banner.linkUrl===''? 'javascript:void(0)':banner.linkUrl">
+								<img v-bind:src="banner.imgUrl" />
+							</a>
+						</div>
+					</div>
+					<!-- 如果需要分页器 -->
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="block find-icons">
+			<a :href="item.linkUrl" v-for="item in listData.iconList">
+				<img :src="item.iconUrl" />
+				<p v-text="item.title"></p>
+			</a>
+		</section>
+
+		<div class="hr10"></div>
+
+		<section class="block" v-if="listData.articleList.length > 0">
+			<div class="block-title">
+				媒体报道
+				<a href="/src/article/medianew.html" class="more">更多
+					<img src="/skins/new/images/jt_right.png" />
+				</a>
+			</div>
+			<div class="block-content">
+				<ul class="item-list">
+					<li v-for="(item, index) in listData.articleList" :key="index" @click="medialink(item.noticeId)" class="find-media-list">
+						<div class="content">
+							<h2 v-text="item.title"></h2>
+							<p v-text="item.publishTime"></p>
+						</div>
+						<div class="img">
+							<img v-if="item.imgUrl" :src="item.imgUrl" alt="">
+							<img v-else src="/skins/new/images/media-detail-img.png">
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+	</div>
+	@@include('../include/foot.html',{ "curMenu":"2" })
+</body>
+<script src="/plugins/swiper/swiper.min.js"></script>
+<script src="/js/new_js/base.js"></script>
+<script src="/js/new_js/article.js"></script>
+<script>
+	active.index();
+	var mySwiperBanner = new Swiper('.banner .swiper-container', {
+		pagination: '.banner .swiper-pagination',
+		speed: 400,
+		loop: true,
+		autoplay: 4000,
+		spaceBetween: 0,
+		autoplayDisableOnInteraction: false
+	});
+</script>
+
+
+</html>

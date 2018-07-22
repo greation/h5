@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <title></title>
+  <link rel="stylesheet" href="/skins/default/css/public.css" />
+  <link rel="stylesheet" href="/src/activity/june/css/activity.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+  <script src="/js/zepto.min.js"></script>
+  <script src="/js/public.js"></script>
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script src="/js/vue.min.js"></script>
+  <script>
+    util.wxShareMain({
+      //如果如要debug加添参数debug为true
+      title: '童心同趣，轻松赢好礼',
+      desc: '千元花式好礼，等你拿到手软',
+      link: Helper.webPath + '/src/activity/june/index.html',
+      imgUrl: Helper.webPath + '/src/activity/june/images/wxshare.jpg',
+      successEvt: function () {
+        window.location.href = '/src/activity/june/index.html?random=' + parseInt(Math.random() *
+          100000);
+      },
+      cancelEvt: function () {
+        //
+      }
+    });
+  </script>
+  <style>
+    .weui_dialog_ft{padding: 20px;
+      border-top: none;}
+    .weui_dialog_bd{font-size: .8rem;}
+    .weui_btn_dialog.primary:nth-child(2) {
+      color: #fff;
+      border-left: none;
+      background: #ff6200;
+      height: 40px!important;
+      margin-left: 5%;
+      font-size: .8rem;
+    }
+    .weui_dialog{border-radius: 0;}
+    .weui_dialog_ft .confirm_no{
+      border: 1px solid #ff6200;
+      color: #ff6200;
+      height: 38px!important;font-size: .8rem;}
+    .weui_dialog_ft a{border-radius: 3px;}
+  </style>
+</head>
+
+<body>
+  <div class="container" id="index">
+    <div class="imgs">
+      <div class="img_box relative">
+        <img src="images/img_01.jpg" alt="" style="position: relative;
+    top: 1px;">
+        <div class="btn_rule_one" id="btn-rule"></div>
+      </div>
+      <div class="img_box relative">
+        <img src="images/img_02.jpg" alt="">
+        <div class="sm_explain">
+          <!--<p class="fs26 mar-t-5">单笔投资半年标或年标满5000元即可</p>-->
+          <!--<p class="fs26 mar-t-5">获得等值的小树苗，详情请看活动规则</p>-->
+          <p class="text-center"  style="color: #fff;">您当前的
+            <img src="images/icon_sapling.png" class="icon_sapling" alt="">共有
+            <span class="color-yellow" v-text="initData.treeCount">-</span> 把,查看
+            <input type="button" class="btn_exchange_record" id="btn-record">
+          </p>
+        </div>
+      </div>
+      <div class="items_c">
+        <div class="line_01 relative">
+          <img src="images/img_b_01.jpg" alt="">
+          <span class="btn_exchange exchange01 btn_dh1"  :class="{btn_dh: isFlag1,btn_dhg:!isFlag1 }" @click="openExchangeModal(0)"></span>
+          <span class="btn_exchange exchange02 btn_dh2" :class="{btn_dh: isFlag2,btn_dhg:!isFlag2 }" @click="openExchangeModal(1)"></span>
+          <span class="btn_exchange exchange03 btn_dh3" :class="{btn_dh: isFlag3,btn_dhg:!isFlag3 }" @click="openExchangeModal(2)"></span>
+        </div>
+        <div class="line_02 relative">
+          <img src="images/img_b_02.jpg" alt="">
+          <span class="btn_exchange exchange01 btn_dh4" :class="{btn_dh: isFlag4,btn_dhg:!isFlag4 }" @click="openExchangeModal(3)"></span>
+          <!--<span class="btn_exchange exchange02" @click="openExchangeModal(4)"></span>-->
+          <span class="btn_exchange exchange03 btn_dh5" :class="{btn_dh: isFlag5,btn_dhg:!isFlag5 }" @click="openExchangeModal(4)"></span>
+        </div>
+        <div class="line_03 relative">
+          <img src="images/img_b_03.jpg" alt="">
+          <span class="btn_exchange exchange01 btn_dh6" :class="{btn_dh: isFlag6,btn_dhg:!isFlag6 }" @click="openExchangeModal(5)"></span>
+          <span class="btn_exchange exchange02 btn_dh7" :class="{btn_dh: isFlag7,btn_dhg:!isFlag7 }" @click="openExchangeModal(6)"></span>
+          <span class="btn_exchange exchange03 btn_dh8" :class="{btn_dh: isFlag8,btn_dhg:!isFlag8 }" @click="openExchangeModal(7)"></span>
+        </div>
+        <div class="relative">
+          <img src="images/img_b_04.jpg" alt="">
+          <span class="link_invest_list" @click="linkInvestList"></span>
+        </div>
+      </div>
+    </div>
+  
+  <div class="modal-rule hide">
+    <div class="clearfix">
+      <img src="images/btn_close.png" class="btn-close pull-right" alt="" width="44" height="44">
+    </div>
+    <div class="txt-cont">
+      <h3 class="text-center">活动规则</h3>
+      <div class="txt-gz hide" v-html="initData.rule">
+        
+      </div>
+    </div>
+  </div>
+  <div class="modal-exchange modal-exchange-box  hide">
+    <div class="title text-center">
+      <span>确认兑换</span>
+      <img src="images/icon_close.png" class="close_exchange_modal" alt="">
+    </div>
+    <div class="reward_name fs26">
+      <span class="c999" style="width:80px;flex-shrink:0">兑换奖品</span>
+      <span v-text="rewardArr[currentItem].rewardName" style="word-break: break-all;font-family:微软雅黑 !important;color: #707070 !important;"></span>
+    </div>
+    <div class="reward_count fs26">
+        <span class="c999" style="width:80px;flex-shrink:0">兑换数量</span>
+        <span>
+          <input type="button" class="btn_reduce" value="-"  @click="countReduce"><!--
+          --><input type="text" class="input_item_num" v-model="exchangeCount" @keyup="numFilter" maxlength="2"><!--
+          --><input type="button" class="btn_add" value="+" @click="countAdd">
+        </span>
+    </div>
+    <div class="sapling_num text-right mar-t-15">
+      <img src="images/icon_sapling.png" width="24" alt=""> x <span v-text="countSaplingNum"></span>
+    </div>
+    <div class="text-center mar-t-15">
+      <input type="button" class="confirm_exchange fs28" value="立即兑换" @click="exchangeMain" id="btn-confirm-exchange">
+    </div>
+    <p class="text-center fs20 color-gray mar-t-5">*兑换成功后10个工作日内发送获奖短信</p>
+  </div>
+  <div class="modal-exchange modal-exchange-record hide">
+      <div class="title text-center">
+        <span>兑换记录</span>
+        <img src="images/icon_close.png" class="close_exchange_modal" alt="">
+      </div>
+      <div class="relative list_scroll" v-if="recordArr.length>0">
+        <div class="record_item fs26" v-for="record in recordArr">
+          <span class="exchange_time" v-text="record.exchangeTime"></span>
+          <span class="exchange_name" v-text="record.rewardName"></span>
+          <span class="mar-l-5" v-text="'x'+record.exchangeCount"></span>
+        </div>
+      </div>
+      <div class="text-center" v-else>
+        <img src="images/none_record.jpg" alt="" width="150" class="mar-t-20">
+      </div>
+      
+    </div>
+</div>
+  <script src="js/activity.js"></script>
+  <script>
+    util.setCookieHandle(function(){
+      vm.index();
+    })
+  </script>
+</body>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?bb16a79f0eb0080b69b2282f2800f3e7";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</html>

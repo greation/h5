@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>关于宜泉</title>
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/about.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+    <script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+    <script src="/js/public.js"></script>
+</head>
+<body>
+@@include('../include/head.html',{ "title":"关于宜泉", "isback":true })
+<div class="tabar">
+    <div class="testin" style="overflow-x: auto">
+        <ul class="tabbar">
+            <li class="cur"><a href="/src/about/aboutekeyfund.html" >平台简介</a></li>
+            <li><a href="/src/about/team.html" >管理团队</a></li>
+            <li><a href="/src/about/organization.html" >组织信息</a></li>
+            <li><a href="/src/about/certificate.html" >资质证书</a></li>
+            <li><a href="/src/about/contact.html" >联系我们</a></li>
+            <li><a href="/src/about/acceptance.html">承诺函</a></li>
+        </ul>
+    </div>
+</div>
+
+    <div class="swiper-container swiper-ekeyfund">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <img src="/images/about_logo.png" class="logo_about" />
+                <p class="about_intr fs28">宜泉资本是上海响泉金融信息服务有限公司旗下的金融信息服务平台，它专注于上海的不动产细分领域，致力于为广大投资人提供“低风险、易理解、全透明”的一站式理财服务。<br /> 凭借“互联网+金融+不动产”三者结合的创新模式，打造跨界与融合的领先金融模式，坚决贯彻普惠自由的投资理念，其灵活、专业、安全的理财产品，在为大家带来稳定的收益同时，更提供安全、快乐的理财体验。
+                </p>
+                <div class="swiper-img">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide img_about">
+                            <img src="/images/about_img_01.jpg"/>
+                        </div>
+                        <div class="swiper-slide img_about">
+                            <img src="/images/about_img_02.jpg"/>
+                        </div>
+                        <div class="swiper-slide img_about">
+                            <img src="/images/about_img_03.jpg"/>
+                        </div>
+                        <div class="swiper-slide img_about">
+                            <img src="/images/about_img_04.jpg"/>
+
+                        </div>
+                    </div>
+                    <div class="swiper-pagination-img img_dot" style="text-align:center;position: relative;
+    z-index: 333;"></div>
+                </div>
+
+            </div>
+
+            <div class="swiper-slide js_img"><img src="/images/lx.jpg" /></div>
+            <div class="swiper-slide js_img"><img src="/images/wecode.jpg" /></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-scrollbar"></div>
+        <div class="leader_arrow"><img src="/images/leader_arrow.png" /></div>
+    </div>
+
+
+<script type="text/javascript">
+    $(function(){
+        var mySwiper = new Swiper( '.swiper-ekeyfund', {
+            direction: 'vertical',
+            loop: true,
+            spaceBetween: 0,
+            scrollbar: '.swiper-scrollbar',
+            pagination : '.swiper-pagination',
+        } )
+        var mySwiper = new Swiper( '.kxtdsg', {
+            direction: 'vertical',
+            loop: true,
+            spaceBetween: 0,
+            scrollbar: '.swiper-scrollbar',
+            pagination : '.swiper-pagination',
+        } )
+        var mySwiperbimg = new Swiper( '.swiper-img', {
+            direction: 'horizontal',
+            loop: true,
+            spaceBetween: 0,
+            scrollbar: '.swiper-scrollbar',
+            pagination : '.swiper-pagination-img',
+        } )
+
+        if (APP_FLAG == 'APP_ANDROID' || APP_FLAG == 'APP_IOS') {
+            $("header").hide();
+            $(".navposition .zzdata").css("margin-top","45px");
+            $(".navposition .tabar").css("top","0");
+        }
+    });
+</script>
+
+</body>
+</html>

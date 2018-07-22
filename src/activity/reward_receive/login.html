@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>登录</title>
+  <link rel="stylesheet" href="/skins/default/css/public.css" />
+  <link rel="stylesheet" href="/src/activity/reward_receive/css/activity.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+  <script src="/js/zepto.min.js"></script>
+  <script src="/js/public.js"></script>
+</head>
+<body>
+  <div class="container relative" id="loginPage">
+    <div class="banner_box">
+      <img src="./images/login_banner.jpg" alt="">
+    </div>
+    <div class="login_form mar-t-15">
+      <div class="relative">
+        <input type="tel" class="inp_phone" placeholder="手机号" maxlength="11" v-model="inpPhone">
+        <span class="text_error fs24">222</span>
+      </div>
+      <div class="relative mar-t-20">
+        <input type="password" class="inp_pwd" placeholder="密码为6-16为数字/字母" v-model="inpPsw">
+        <span class="text_error fs24">1111</span>
+      </div>
+      <div class="text-center relative">
+        <input type="button" value="登录" class="btn_login" @click="loginMain">
+      </div>
+    </div>
+    <div class="text_risk_tip">
+      <p class="text-center mar-t-40">借贷有风险，理财需谨慎</p>
+      <p class="text-center">如对本活动有疑问，请拨打客服电话：400-109-2626</p>
+    </div>
+  </div>
+  <script src="/js/vue.min.js"></script>
+  <script src="js/activity.js"></script>
+  <script>
+    vms.login();
+  </script>
+</body>
+</html>

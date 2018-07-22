@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>安全保障</title>
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/about.css" />
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+    <script src="/js/public.js"></script>
+</head>
+<body class="navposition">
+@@include('../include/head.html',{ "title":"安全保障", "isback":true })
+<div class="tabar">
+    <div class="testin" style="overflow-x: auto">
+        <ul class="tabbar">
+            <li ><a href="/src/about/bank.html" >银行存管</a></li>
+            <li class="cur"><a href="/src/about/safekeyfund.html" >风险控制</a></li>
+            <li><a href="/src/about/aqbz.html" >保障方式</a></li>
+            <li><a href="/src/about/skmessage.html" >审核信息</a></li>
+            <li><a href="/src/about/flaw.html" >法律合规</a></li>
+        </ul>
+    </div>
+</div>
+
+<!--风险控制-->
+<div class="zzdata">
+    <img src="/images/fxkz_01.jpg" />
+    <img src="/images/fxkz_02.jpg" />
+    <img src="/images/fxkz_03.jpg" />
+    <img src="/images/fxkz_04.jpg" />
+    <img src="/images/fxkz_05.jpg" />
+    <img src="/images/fxkz_06.jpg" />
+    <img src="/images/fxkz_07.jpg" />
+    <img src="/images/fxkz_08.jpg" />
+    <img src="/images/fxkz_09.jpg" />
+    <img src="/images/fxkz_10.jpg" />
+
+</div>
+<script>
+    $(function(){
+        if (APP_FLAG == 'APP_ANDROID' || APP_FLAG == 'APP_IOS') {
+            $("header").hide();
+            $(".navposition .zzdata").css("margin-top","45px");
+            $(".navposition .tabar").css("top","0");
+        }
+    })
+</script>
+</body>
+</html>

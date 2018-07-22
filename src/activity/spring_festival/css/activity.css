@@ -1,0 +1,177 @@
+.util_toast_box{
+  bottom:50%;
+}
+.act_time{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  font-size: 10px;
+  text-align: center;
+}
+.act_time01{
+  top: 16%;
+  color:#ffffff;
+}
+.invest_tip{
+  width:14px;
+  height:14px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.tip_img {
+  position: absolute;
+  width: 70%;
+  text-align: center;
+  left: 15%;
+  top: -6%;
+}
+.act_time02{
+  top: 16%;
+}
+.act_time03{
+  top: 26%;
+  color:#ffffff;
+}
+.invest_money{
+  position: absolute;
+  top:2%;
+  width:100%;
+  text-align: center;
+  left:0;
+}
+.act_time04{
+  top: 20%;
+}
+.link_make{
+  position: absolute;
+}
+.link_make01{
+  width: 27%;
+  left: 37%;
+  bottom: 2%;
+  text-align: center;
+  color: #fff100;
+}
+.link_make02{
+  width: 28%;
+  left: 14%;
+  bottom: 2%;
+  text-align: center;
+  color: #fff100;
+}
+
+.link_make04{
+  width: 28%;
+  left: 14%;
+  bottom: 2%;
+  text-align: center;
+  color: #fff100;
+}
+.link_make03{
+  width: 28%;
+  right: 14%;
+  bottom: 2%;
+  text-align: center;
+  color: #fff100;
+}
+.main_img_box>img{
+  display: block;
+}
+.link_make05{
+  width: 28%;
+  right: 14%;
+  bottom: 2%;
+  text-align: center;
+  color: #fff100;
+}
+.modal-rule {
+	position: fixed;
+	width: 86%;
+	height: 70%;
+	left: 7%;
+	top: 10%;
+	z-index: 9;
+}
+
+.modal-rule .txt-cont {
+	height: 80%;
+	background: #fff;
+	padding: 15px;
+	line-height: 2.2;
+	margin-top: 5px;
+	font-size: 0.875rem;
+	border-radius: 22px;
+}
+
+.modal-rule .txt-gz {
+	height: 90%;
+	overflow: auto;
+}
+.btn_rule{
+  position: absolute;
+  width: 21%;
+  left: 40%;
+}
+.link_invest_list{
+  position: absolute;
+  width: 30%;
+  left: 35%;
+  bottom: 28%;
+  height: 9%;
+}
+.btn_rule_one{
+  top: 25%;
+  height: 7%;
+}
+.btn_rule_two{
+  top: 25%;
+  height: 7%;
+}
+.btn_rule_three{
+  top: 35%;
+  height: 9%;
+}
+.btn_rule_four{
+  top: 26%;
+  height: 6%;
+}
+.btn_receive_pack{
+  position: absolute;
+  width: 34%;
+  left: 33%;
+  bottom: 0;
+  height: 9%;
+}
+.btn_done{
+  position: absolute;
+  width: 17%;
+  height: 6%;
+  bottom: 0;
+  text-align: center;
+  color:#ffffff;
+}
+.btn_done01{
+  left:10%;
+}
+.btn_done02{
+  left:42%;
+}
+.btn_done03{
+  left:10%;
+  height: 10%;
+}
+.btn_done04{
+  left:42%;
+  height: 10%;
+}
+.lottry_x{
+  position: absolute;
+  width: 29%;
+  height: 18%;
+  bottom: 21%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff100;
+  right: 5%;
+}

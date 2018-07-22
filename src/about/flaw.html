@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>安全保障</title>
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/about.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/index.css" />
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+    <script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+    <script src="/js/public.js"></script>
+</head>
+<body class="navposition">
+@@include('../include/head.html',{ "title":"安全保障", "isback":true })
+<script>
+    $(document).ready(function () {
+        $(".testin").scrollLeft(300);
+    })
+</script>
+<div class="tabar">
+    <div class="testin" style="overflow-x: auto">
+        <ul class="tabbar">
+            <li ><a href="/src/about/bank.html" >银行存管</a></li>
+            <li><a href="/src/about/safekeyfund.html" >风险控制</a></li>
+            <li><a href="/src/about/aqbz.html" >保障方式</a></li>
+            <li><a href="/src/about/skmessage.html" >审核信息</a></li>
+            <li class="cur"><a href="/src/about/skmessage.html" >法律合规</a></li>
+        </ul>
+    </div>
+</div>
+<div class="pad-b-50 pad-t-80" id="flaw">
+    <div class="message_card " v-for="mess in items" :id="mess.id" @click="messages_detail(mess.id)" v-cloak>
+        <div class="message_time text-center"><span v-text="mess.publishTime">2017-03-28 17:59</span></div>
+        <div class="message_cardlist bg-white ">
+            <div class="message_name">
+                <template v-if="mess.lookStatus==='N'"><i class="nored pull-left mar-r-5"></i></template>
+                <template v-else="mess.lookStatus==='Y'"></template>
+
+                <span class="pull-left" v-text="mess.title"></span></div>
+            <div class="message_content">
+                <p class="c9"  v-html="mess.summary"></p>
+            </div>
+            <a>
+                <div class="message_detail">
+                    <span class="pull-left fs28 pad-l-15">查看详情</span>
+                    <span class="pull-right mar-r-10">></span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div id="toTop" onclick="$(document).scrollTop(0);"><img src="/images/backup.png" /></div>
+
+<script src="/js/vue.min.js"></script>
+<script src="/js/about.js"></script>
+<script>
+    window.onload = function () {
+        var oTop = document.getElementById( "toTop" );
+        var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+        var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+        window.onscroll = function () {
+            var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+            if ( scrolltop > 100 ) {
+                oTop.style.display = "block";
+            } else {
+                oTop.style.display = "none";
+            }
+        }
+        oTop.onclick = function () {
+            document.documentElement.scrollTop = document.body.scrollTop = 0;
+        }
+        ga.messages_list();
+    }
+
+    $(function(){
+        if (APP_FLAG == 'APP_ANDROID' || APP_FLAG == 'APP_IOS') {
+            $("header").hide();
+            $(".navposition .pad-t-80").css("padding-top","30px");
+            $(".navposition .tabar").css("top","0");
+        }
+    })
+
+</script>
+
+
+</body>
+</html>

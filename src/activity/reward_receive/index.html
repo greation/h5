@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>领奖页面</title>
+  <link rel="stylesheet" href="/skins/default/css/public.css" />
+  <link rel="stylesheet" href="/src/activity/reward_receive/css/activity.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+  <script src="/js/zepto.min.js"></script>
+  <script src="/js/public.js"></script>
+  <script src="./js/clipboard.min.js"></script>
+  <style>
+    body {
+      background: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container relative receive" id="indexPage">
+    <header>
+      <div class="item back">
+
+      </div>
+      <div class="item title c3">
+        领奖页面
+      </div>
+      <a class="item operation c6" href="./address.html">
+        <img src="./images/icon_edit.jpg" alt="">
+      </a>
+    </header>
+    <div class="nav">
+      <div class="item active fs28">
+        <span class="bot_line" @click="navSwitch('2','0')">待领取</span>
+      </div>
+      <div class="item fs28">
+        <span class="bot_line" @click="navSwitch('1','1')">已领取</span>
+      </div>
+      <div class="item fs28">
+        <span class="bot_line" @click="navSwitch('3','2')">已过期</span>
+      </div>
+    </div>
+    <div class="banner_box">
+      <img src="./images/receive_banner.jpg" alt="">
+    </div>
+    <div class="reward_list">
+      <div class="item mar-b-10" v-if="curStatus==='2'" v-for="item in rewardList" v-cloak>
+        <div class="item_detail">
+          <div class="item_picture">
+            <img :src="item.imgUrl" alt="">
+          </div>
+          <div class="item_desc">
+            <p class="fs28" v-text="item.rewardName"></p>
+            <p v-text="'x'+item.buyNum"></p>
+            <p class="item_price">
+              <span v-text="item.price"></span>
+              <span class="fs24">元</span>
+            </p>
+          </div>
+          <div class="operate">
+            <input type="button" class="btn_receiving fs26" value="立即领取" @click="submitReward(item.sendId,item.awardType)">
+          </div>
+        </div>
+        <div class="text_time_end fs24">
+          <span>
+            奖品领取有效期至
+            <span v-text="item.awardDeadLine"></span>
+          </span>
+        </div>
+      </div>
+      <div class="item mar-b-10" v-if="curStatus==='1'" v-for="item in rewardList" v-cloak>
+        <div class="item_detail">
+          <div class="item_picture">
+            <img :src="item.imgUrl" alt="">
+          </div>
+          <div class="item_desc">
+            <p class="fs28" v-text="item.rewardName"></p>
+            <p v-text="'x'+item.buyNum"></p>
+            <p class="item_price">
+              <span v-text="item.price"></span>
+              <span class="fs24">元</span>
+            </p>
+          </div>
+          <div class="operate">
+            <p class="fs28 c999">已领取</p>
+
+          </div>
+        </div>
+        <div class="text_time_end fs24">
+          <span>
+            奖品领取有效期至
+            <span v-text="item.awardDeadLine"></span>
+          </span>
+          <input type="button" v-if="item.awardType==='SWAP'" value="查看券码" class="fs26 see_reward_code" @click="showRewardCode(item.sendId)">
+        </div>
+      </div>
+      <div class="item mar-b-10" v-if="curStatus==='3'" v-for="item in rewardList" v-cloak>
+        <div class="item_detail">
+          <div class="item_picture">
+            <img :src="item.imgUrl" alt="">
+          </div>
+          <div class="item_desc">
+            <p class="fs28" v-text="item.rewardName"></p>
+            <p v-text="'x'+item.buyNum"></p>
+            <p class="item_price">
+              <span v-text="item.price"></span>
+              <span class="fs24">元</span>
+            </p>
+          </div>
+          <div class="operate">
+            <p class="fs28 c999">已过期</p>
+          </div>
+        </div>
+        <div class="text_time_end fs24">
+          <span>
+            奖品领取有效期至
+            <span v-text="item.awardDeadLine"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" v-if="rewardList.length<1">
+      <img src="./images/none_rewrad.jpg" alt="" width="34%">
+    </div>
+    <div class="text_risk_tip">
+      <p class="text-center mar-t-40">借贷有风险，理财需谨慎</p>
+      <p class="text-center">如对本活动有疑问，请拨打客服电话：400-109-2626</p>
+    </div>
+    <div class="select_address_modal hide">
+      <p class="text-center">奖品收货地址</p>
+      <div class="detail fs26 mar-t-20">
+        <input type="hidden" value="" class="cur_reward_id">
+        <input type="hidden" value="" class="cur_address_id">
+        <p>收件人：
+          <span v-text="orderUser"></span>
+        </p>
+        <p class="mar-t-10">联系电话：
+          <span v-text="orderPhone"></span>
+        </p>
+        <p class="mar-t-10">收货地址：
+          <span v-text="orderDetailAddress"></span>
+        </p>
+      </div>
+      <div class="btns fs26 mar-t-20">
+        <input type="button" value="选择其他地址" class="btn btn_select_other fs26" @click="selectOtherAddress">
+        <input type="button" value="确认此地址" class="btn btn_submit fs26">
+      </div>
+    </div>
+    <div class="show_code_modal hide">
+      <p class="text-center">兑换码</p>
+      <div class="detail fs24 mar-t-20">
+        <p class="text_reward_code"></p>
+        <p class="mar-t-10 color-c666 text_timeend"></p>
+      </div>
+      <div class="btns fs24 mar-t-20">
+        <input type="button" value="复  制" class="btn btn_copy_code fs26" @click="copyCode">
+      </div>
+    </div>
+  </div>
+  <script src="/js/vue.min.js"></script>
+  <script src="js/activity.js"></script>
+  <script>
+    vms.receive();
+  </script>
+</body>
+
+</html>

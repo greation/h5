@@ -1,0 +1,197 @@
+.container {
+  max-width: 980px;
+  display: block;
+  margin: 0 auto;
+}
+.util_toast_box{
+  bottom:50%;
+}
+.imgs>.img_box>img {
+  display: block;
+}
+
+.btn_rule_one {
+  position: absolute;
+  width: 25%;
+  height: 15%;
+  bottom: 0;
+  left: 37%;
+}
+
+.sm_explain {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
+.icon_sapling {
+  width: 22px;
+  height: 27px;
+  vertical-align: text-bottom;
+}
+
+.btn_exchange_record {
+  width: 70px;
+  height: 27px;
+  background: url(../images/img_btn_recode.png) no-repeat;
+  background-size: 100% 100%;
+  vertical-align: middle;
+}
+
+.items_box {
+  padding: 15px;
+}
+
+.modal-rule {
+  position: fixed;
+  width: 86%;
+  height: 70%;
+  left: 7%;
+  top: 10%;
+  z-index: 9;
+}
+
+.modal-rule .txt-cont {
+  height: 80%;
+  background: #fff;
+  padding: 15px;
+  line-height: 2.2;
+  margin-top: 5px;
+  font-size: 0.875rem;
+  border-radius: 22px;
+}
+
+.modal-rule .txt-gz {
+  height: 90%;
+  overflow: auto;
+}
+
+.btn_exchange {
+  position: absolute;
+  width: 48px;
+  height: 23px;
+  bottom: 0;
+}
+
+.exchange01 {
+  left: 11%;
+}
+
+.exchange02 {
+  left: 44%;
+}
+
+.exchange03 {
+  left: 76%;
+}
+
+.link_invest_list {
+  position: absolute;
+  width: 50%;
+  height: 27%;
+  left: 25%;
+  top: 17%;
+}
+
+.modal-exchange {
+  position: fixed;
+  width: 86%;
+  left: 7%;
+  top: 20%;
+  padding: 0px 10px 15px 10px;
+  z-index: 9;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.modal-exchange .title {
+  height: 44px;
+  line-height: 44px;
+  border-bottom: #ccc 1px solid;
+}
+
+.modal-exchange .reward_name,
+.modal-exchange .reward_count {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: #ccc 1px solid;
+  padding: 15px 0px;
+  align-items: center;
+}
+
+.confirm_exchange {
+  width: 58%;
+  height: 35px;
+  background: #ff6200;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.btn_reduce,
+.btn_add {
+  width: 20px;
+  height: 30px;
+  color: #4bb8e3;
+  border: #4bb8e3 1px solid !important;
+  background: #fff;
+}
+
+.btn_reduce {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.btn_add {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.input_item_num {
+  width: 50px;
+  height: 28px;
+  border-top: #4bb8e3 1px solid !important;
+  border-bottom: #4bb8e3 1px solid !important;
+  text-align: center;
+}
+
+.close_exchange_modal {
+  position: absolute;
+  right: 15px;
+  top: 9px;
+  width: 26px;
+}
+
+.exchange_time {
+  width: 135px;
+  flex-shrink: 0;
+}
+
+.modal-exchange-record .exchange_name {
+  word-break: break-all;
+}
+
+.modal-exchange-record .title {
+  border: 0;
+}
+
+.modal-exchange-record .record_item {
+  display: flex;
+  justify-content: space-between;
+  border-top: #ccc 1px solid;
+  padding: 10px 0px;
+  align-items: center;
+}
+
+.list_scroll {
+  max-height: 216px;
+  overflow: scroll;
+}
+
+@media screen and (max-width: 320px) {
+  .icon_sapling {
+    height: 22px;
+  }
+}

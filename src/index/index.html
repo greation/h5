@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>宜泉资本，您的理财专属通道</title>
+  <meta name="Keywords" content="宜泉资本，宜泉资本官网，个人理财，新手理财，投资理财产品，房月盈，个人投资理财" />
+  <meta name="Description" content="宜泉资本（www.ekeyfund.com）是一家提供由优质不动产担保的线上金融理财服务平台，采取互联网+金融+不动产全新个人理财模式，持之以恒地贯彻普惠自由的个人投资理财观念，个人理财用户通过宜泉资本官网进行理财，实现个人理财收益."
+  />
+  <link rel="stylesheet" type="text/css" href="/skins/new/css/public.css">
+  <link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+  <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+
+  <script src="/js/new_js/zepto.min.js"></script>
+  <script src="/plugins/swiper/swiper.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+  
+</head>
+
+<body>
+  <div class="home" id="app" v-cloak>
+    <div class="banner relative">
+      <div class="message-icon-box" @click="messageLink">
+        <img alt="" src="/skins/new/images/icon-message.png" />
+        <span class="dot" v-if="data.unLookNum > 0"></span>
+      </div>
+
+      <div class="swiper-banner swiper-container" style="height: 11.8rem;">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" v-for="(item, index) in data.bannerList" :key="index">
+            <a target="_blank" :href="item.linkUrl">
+              <img :src="item.imgUrl" alt="">
+            </a>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <section class="block" v-if="data.activityBannerList">
+      <div class="block-ad">
+        <div v-for="(item, index) in data.activityBannerList" :key="index">
+          <a :href="item.linkUrl" target="_blank">
+            <img :src="item.picUrl?item.picUrl:'/skins/new/images/activityBannerList-default.png'" alt="">
+          </a>
+        </div>
+
+        <div v-if="data.activityBannerList.length < 1">
+          <img src="/skins/new/images/activityBannerList-default.png" alt="">
+        </div>
+        <div v-if="data.activityBannerList.length < 2">
+          <img src="/skins/new/images/activityBannerList-default.png" alt="">
+        </div>
+      </div>
+    </section>
+
+    <div class="hr10" v-if="data.newSails.length > 0"></div>
+
+    <section class="block" v-if="data.newSails.length > 0">
+      <div class="block-title">新手起航</div>
+      <div class="block-content">
+        <ul class="item-list">
+          <li v-for="(item, index) in data.newSails" :key="index" @click="item.borrowType == 'EXPERIENCE'?investRight(item.borrowId):projectLink(item.borrowId)">
+            <div class="item_cont">
+              <div>
+                <div class="item-left">
+                  <h1>
+                    <span v-text="item.borrowRate"></span>%
+                    <span class="tip" v-if="item.addRate > 0">+
+                      <span v-text="item.addRate"></span>%</span>
+                  </h1>
+                  <p>约定年化收益</p>
+                </div>
+                <div class="item-right">
+                  <h6>期限
+                    <span v-text="item.borrowDuration"></span>
+                  </h6>
+                  <p class="item-title" v-text="item.borrowName"></p>
+                </div>
+              </div>
+              <div class="tags">
+                <span v-if="item.activityTag" v-text="item.activityTag"></span>
+                <span v-if="item.useVoucher == '皆可用'">加息券</span>
+                <span v-if="item.useVoucher == '皆可用'">现金券</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="hr10" v-if="data.listBorrow.length > 0"></div>
+
+    <section class="block" v-if="data.listBorrow.length > 0">
+      <div class="block-title">
+        热门推荐
+        <a href="/src/invest/index.html" class="more">更多
+          <img src="/skins/new/images/jt_right.png" />
+        </a>
+      </div>
+      <div class="block-content">
+        <ul class="item-list">
+          <li v-for="(item, index) in data.listBorrow" :key="index" @click="projectLink(item.borrowId)">
+            <div class="item_cont">
+              <div>
+                <div class="item-left">
+                  <h1>
+                    <span v-text="item.borrowRate"></span>%
+                    <span class="tip" v-if="item.addRate > 0">+
+                      <span v-text="item.addRate"></span>%</span>
+                  </h1>
+                  <p>约定年化收益</p>
+                </div>
+                <div class="item-right">
+                  <h6>期限
+                    <span v-text="item.borrowDuration"></span>
+                  </h6>
+                  <p class="item-title" v-text="item.borrowName"></p>
+                </div>
+              </div>
+              <div class="tags">
+                <span v-if="item.useVoucher == '皆可用'">加息券</span>
+                <span v-if="item.useVoucher == '皆可用'">现金券</span>
+                <span class="color" v-if="item.activityTag" v-text="item.activityTag"></span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="hr10"></div>
+
+    <section class="block">
+      <div class="block-title">了解宜泉</div>
+      <div class="block-content">
+        <div class="block-about">
+          <div>
+            <h5 v-text="parseFloat(data.sumTransMoney).toLocaleString()"></h5>
+            <p>累计交易额（万元）</p>
+          </div>
+          <div>
+            <h5 v-text="parseFloat(data.sumRegistNumber).toLocaleString()"></h5>
+            <p>累计用户注册人数</p>
+          </div>
+        </div>
+
+        <div class="swiper-about" v-if="data.platformDataBannerList">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(item, index) in data.platformDataBannerList" :key="index">
+              <a :href="item.linkUrl" target="_blank">
+                <img :src="item.picUrl?item.picUrl:'/skins/new/images/platformDataBannerList-default.png'" alt="">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hr10"></div>
+
+  </div>
+  @@include('../include/foot.html',{ "curMenu":"0" })
+
+  <div id="activty_pop">
+    <!-- <a class="anneversary_box" id="activity_box" :href="data.lowerRightCornerActivityUrl">
+            <img :src="data.lowerRightCornerImgUrl" alt="">
+        </a> -->
+    <div class="activty_dream" :class="{hide:isActive}">
+      <div class="bounceIn animated">
+        <img :src="data.floatWindowImgUrl" alt="" class="activty_dream_img">
+        <a :href="data.floatWindowActivityUrl" class="right_get">
+          <img :src="data.floatWindowBtnUncheckImgUrl" class="right_getImg" />
+        </a>
+        <span class="close_activity" @click="close_activity()">
+          <img src="../../images/closeActivity.png" />
+        </span>
+      </div>
+    </div>
+  </div>
+  <script src="/js/new_js/home.js"></script>
+  <script>
+    iv.home()
+    iv.homeActivity();
+    var mySwiperBanner = new Swiper('.swiper-banner', {
+      pagination: '.swiper-pagination',
+      speed: 400,
+      spaceBetween: 0,
+      loop: true,
+      autoplay: 4000,
+      autoplayDisableOnInteraction: false
+    });
+  
+    var swiper = new Swiper('.swiper-about', {
+      slidesPerView: 2.6,
+      spaceBetween: 10,
+      freeMode: true,
+      slidesOffsetBefore: 15,
+      slidesOffsetAfter: 15
+    });
+  </script>
+</body>
+</html>

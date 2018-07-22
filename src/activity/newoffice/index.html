@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title></title>
+    <link rel="stylesheet" href="/skins/default/css/public.css" />
+    <link rel="stylesheet" href="/src/activity/newoffice/css/activity.css" />
+    <script src="/js/zepto.min.js"></script>
+    <script src="/js/public.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        util.wxShareMain({
+            //如果如要debug加添参数debug为true
+            title: '2146元红包等你拿！',
+            desc: '不忘初心，砥砺前行 ，齐贺“宜泉资本“乔迁之喜',
+            link: Helper.webPath + '/src/activity/newoffice/index.html',
+            imgUrl: Helper.webPath + '/src/activity/newoffice/images/wxshare.jpg',
+            successEvt: function () {
+                window.location.href = '/src/activity/newoffice/index.html?random=' + parseInt(Math.random() *
+                    100000);
+            },
+            cancelEvt: function () {
+                //
+            }
+        });
+    </script>
+</head>
+
+<body>
+<div class="container" id="index">
+    <img src="images/office_01.jpg"/>
+    <img src="images/office_02.jpg"/>
+    <img src="images/office_03.jpg"/>
+    <img src="images/office_04.jpg"/>
+    <div class="btn-position">
+        <img src="images/office_05.jpg"/>
+        <a href="#" @click="btn" :class="{btnon:isActive}" id="getCard" class="btn btnDefault"></a>
+    </div>
+    <img src="images/office_06.jpg"/>
+    <img src="images/office_07.jpg"/>
+
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="js/activity.js"></script>
+<script>
+    util.setCookieHandle(function(){
+        vm.index();
+    })
+</script>
+</body>
+
+</html>

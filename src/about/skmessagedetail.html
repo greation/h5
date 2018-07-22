@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>安全保障</title>
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/about.css" />
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+    <script src="/js/public.js"></script>
+</head>
+<body>
+@@include('../include/head.html',{ "title":"审核信息", "isback":true })
+<div id="skMsg" >
+    <div  v-for='skMsg in images'>
+        <img :src="skMsg" />
+    </div>
+</div>
+<script src="/js/vue.min.js"></script>
+<script src="/js/about.js"></script>
+<script>
+    ga.skMsg();
+    $(function(){
+        if (APP_FLAG == 'APP_ANDROID' || APP_FLAG == 'APP_IOS') {
+            $("header").hide();
+        }
+    })
+</script>
+</body>
+</html>

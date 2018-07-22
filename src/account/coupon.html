@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no" />
+	<title>我的卡券</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/account.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body>
+	<div class="co" id="co" v-cloak>
+		<div class="coupon-fixed-top">
+			<header>
+				<span class="back" onClick="javascript:window.location.href='index.html';">
+					<img src="/skins/new/images/icon_back.png" alt="">
+				</span>
+				<h1>我的卡券</h1>
+			</header>
+			<section class="block coupon-sort">
+				<div class="invest-sort">
+					<div @click="sort1"
+						:class="couponSortActive == 1 && couponeSort1 == true?'active':''">
+						{{sortSub1[rewardType]}}
+						<em :class="couponSortActive == 1 && couponeSort1 == true?'up':'down'"></em>
+					</div>
+					<div @click="sort2" 
+						:class="couponSortActive == 2 && couponeSort2 == true?'active':''">
+						{{sortSub2[status]}}
+						<em :class="couponSortActive == 2 && couponeSort2 == true?'up':'down'"></em>
+					</div>
+					<div @click="sort3" 
+						:class="couponSortActive == 3 && couponeSort3 == true?'active':''">
+						{{sortSub3[prescription]}}
+						<em :class="couponSortActive == 3 && couponeSort3 == true?'up':'down'"></em>
+					</div>
+				</div>
+				<div class="invest-sort-sub">
+					<div v-show="couponeSort1 == true && couponSortActive == 1">
+						<span v-for="(item, index) in sortSub1" :class="rewardType == index?'active':''"
+							@click="rewardType = index, defaultSortActive(), getCoupon()">{{item}}</span>
+					</div>
+					<div v-show="couponeSort2 == true && couponSortActive == 2">
+							<span v-for="(item, index) in sortSub2" :class="status == index?'active':''"
+							@click="status = index, defaultSortActive(), getCoupon()">{{item}}</span>
+					</div>
+					<div v-show="couponeSort3 == true && couponSortActive == 3">
+							<span v-for="(item, index) in sortSub3" :class="prescription == index?'active':''"
+							@click="prescription = index, defaultSortActive(), getCoupon()">{{item}}</span>
+					</div>
+				</div>
+			</section>
+		</div>
+		
+		<div class="hr10"></div>
+
+		<div class="container pad-b-50 wx-scroll-top">
+			<div class="list" v-if="couponList.length > 0">
+				<div class="coupon-item" :class="{'coupon-item-gray': status == 1 || status == 2}" v-for="(coupon, index) in couponList">
+					<div :class="coupon.rewardType" 
+						@click="status == 1 || status == 2?'':userCard(coupon.id,coupon.rewardType)">
+						<div class="coupon-item-left">
+							<i class="icon"></i>
+							<div style="position: relative;">
+								<h2 v-text="coupon.rewardName"></h2>
+								<p class="coupon-list-time">
+									<span v-text="coupon.effectiveTerm"></span>
+								</p>
+							</div>
+						</div>
+						<div class="coupon-item-right" v-text="coupon.rewardType == 'jia'?'+' + coupon.val + '%': coupon.val + '元'"></div>
+					</div>
+					<div class="coupon-item-bottom">
+						<div class="slide-th" @click="showItemDetail(index)">
+							查看详情
+							<em :class="curDetailIndex.indexOf(index) > -1?'up':'down'"></em>
+						</div>
+						<div class="slide-td" v-show="curDetailIndex.indexOf(index) > -1">
+							<p v-if="coupon.rewardType==='ti'">
+								<span class="dot"></span>单笔投资无金额限制</p>
+							<p v-else-if="coupon.minInvest==='-1'">
+								<span class="dot"></span>投资金额无限制</p>
+							<p v-else>
+								<span class="dot"></span>单笔投资满<em v-text="coupon.minInvest"></em>元可用
+							</p>
+							<p>
+								<span class="dot"></span>投资期限<span v-text="coupon.rewardUseDuration==='-1'? '无限制' : coupon.durType==='DAY'?coupon.rewardUseDuration+'天':'满'+coupon.rewardUseDuration+'个月可用'"></span>
+							</p>
+							<p v-if="coupon.instructions">
+								<span class="dot"></span><span v-text="coupon.instructions"></span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<input type="button" :value="loadTxt" class="btn_load_more mar-t-10" @click="loadMore">
+			</div>
+
+			<div class="no-jilu" style="margin-top: 144px;" v-else>
+				<img src="/skins/new/images/coupon-no-icon.png" alt="">
+				<div class="no-more">暂无卡券</div>
+			</div>
+
+			<div class="exchange_coupon">
+				<a href="exchange_coupon.html">兑换卡券</a>
+			</div>
+		</div>
+
+		<div class="sort-shadow" 
+			@click="couponeSort1 = false, couponeSort2 = false, couponeSort3 = false"
+			v-if="(couponeSort1 == true && couponSortActive == 1) || (couponeSort2 == true && couponSortActive == 2) || (couponeSort3 == true && couponSortActive == 3)"></div>
+	</div>
+	<script src="/js/new_js/account.js"></script>
+	<script>
+		vms.mycoupon();
+	</script>
+</body>
+
+</html>

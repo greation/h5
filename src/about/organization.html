@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>关于宜泉</title>
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/public.css" />
+    <link rel="stylesheet" type="text/css" href="/skins/default/css/about.css" />
+    <link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+    <script type="text/javascript" src="/js/zepto.min.js"></script>
+    <script type="text/javascript" src="/plugins/swiper/swiper.min.js"></script>
+    <script src="/js/public.js"></script>
+</head>
+<body class="navposition">
+
+@@include('../include/head.html',{ "title":"关于宜泉", "isback":true })
+<script>
+    $(document).ready(function () {
+        $(".testin").scrollLeft(80);
+    })
+</script>
+<div class="tabar">
+    <div class="testin" style="overflow-x: auto">
+        <ul class="tabbar">
+            <li><a href="/src/about/aboutekeyfund.html" >平台简介</a></li>
+            <li><a href="/src/about/team.html" >管理团队</a></li>
+            <li class="cur"><a href="/src/about/organization.html">组织信息</a></li>
+            <li><a href="/src/about/certificate.html" >资质证书</a></li>
+            <li><a href="/src/about/contact.html">联系我们</a></li>
+            <li><a href="/src/about/acceptance.html" >承诺函</a></li>
+        </ul>
+    </div>
+</div>
+    <div class="zzdata">
+        <img src="/images/zzxx_02.jpg"/>
+        <img src="/images/zzxx_03.jpg" alt="">
+        <img src="/images/zzxx_04.jpg" alt="">
+        <img src="/images/zzxx_05.jpg" alt="">
+        <img src="/images/zzxx_06.jpg" alt="">
+        <img src="/images/zzxx_07.jpg" alt="">
+        <img src="/images/zzxx_08.jpg" alt="">
+        <img src="/images/zzxx_09.jpg" alt="">
+        <img src="/images/zzxx_10.jpg" alt="">
+        <img src="/images/zzxx_11.jpg" alt="">
+    </div>
+</body>
+<script>
+    $(function(){
+        if (APP_FLAG == 'APP_ANDROID' || APP_FLAG == 'APP_IOS') {
+            $("header").hide();
+            $(".navposition .zzdata").css("margin-top","45px");
+            $(".navposition .tabar").css("top","0");
+        }
+    })
+</script>
+</html>

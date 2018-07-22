@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>添加地址</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/skins/default/css/account.css"/>
+	<link rel="stylesheet" href="/src/activity/reward_receive/css/activity.css" />
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/vue.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script src="/js/city-picker.js"></script>
+</head>
+<body class="ae">
+	@@include('../../include/head.html',{
+		"title":"",
+		"isback":true
+	})
+	<div class="container add_updata" id="add_ad">
+		<div class="form">
+			<div class="item relative">
+				<span class="name_text">领奖人</span> 
+				<input type="text" placeholder="收货人姓名" class="inp_phone inp_name" v-model="receiver">
+			</div>
+			<div class="item relative">
+				<span class="name_text">联系手机</span> 
+				<input type="text" placeholder="收货人手机号码" class="inp_phone inp_name" v-model="mobile" maxlength="11">
+			</div>
+			<div class="item relative mar-t-10">
+				<span class="name_text">所在地区</span> 
+				<div class="pad-l-100">
+				<select  @change="getCity" v-model="provinceName">
+					<option value="" v-for="(province,index) in citylist" :value="province.name" v-text="province.name"></option>
+				</select>
+				<select  @change="getArea" v-model="cityName">
+					<option value="" v-for="(city,index) in cityData" :value="city.name" v-text="city.name"></option>
+				</select>
+				<select  v-model="areaName">
+					<option value="" v-for="city in areaData" :value="city.name" v-text="city.name"></option>
+				</select>
+				</div>
+				<!-- <input type="text" class="inp_phone inp_name" v-model="allAddress"> -->
+			</div>
+			<div class="xidz">
+				<span class="mar-b-10">详细地址</span> 
+				<textarea name="" class="fs28"  v-model="detailAddress"></textarea>
+			</div>
+			<input type="button" value="保存" class="btn_sub" @click="subAddress"/>
+		</div>
+	</div>
+<script src="./js/activity.js"></script>
+<script>
+	vms.addAddress();
+</script>
+</body>
+</html>

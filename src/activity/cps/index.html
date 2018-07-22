@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<title>新手壕礼限时享</title>
+	<link rel="stylesheet" href="/skins/default/css/public.css" />
+	<link rel="stylesheet" href="/src/activity/cps/css/activity.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/swiper/swiper-3.4.2.min.css" />
+	<script src="/js/zepto.min.js"></script>
+	<script src="js/public.js"></script>
+	<script src='js/sensore.js'></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		var nowurl = window.location.href;
+				nowurl=encodeURI(nowurl);
+  				var pid=util.getRequest(nowurl,"pid");
+  				var userid=util.getRequest(nowurl,"userid");
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title: '新手壕礼限时享',
+			desc: '新手专属双重礼：10000元体验金+998元现金券',
+			link: Helper.webPath + '/src/activity/cps/index.html?pid='+pid+'&userid='+userid,
+			imgUrl: Helper.webPath + '/src/activity/cps/images/wxshare.jpg',
+			successEvt: function () {
+				window.location.href = '/src/activity/cps/index.html?pid='+pid+'&userid='+userid;
+			},
+			cancelEvt: function () {
+				//
+			}
+		});
+	</script>
+	<style>
+		html,body{
+			min-height:100%;
+		}
+		.container{
+			min-height: 100%;
+			background: #1f1274;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container" id="index">
+		<div class="t_imgs relative">
+			<img src="images/cps_01.jpg" height="191" width="750" alt="">
+			<span class="btn_rule btn_rule_one" id="btn-rule"></span>
+			<img src="images/cps_02.jpg" height="190" width="750" alt="">
+			<img src="images/cps_03.jpg" height="191" width="750" alt="">
+			<span class="register" id="register" @click="goreister()"></span>
+			<img src="images/cps_04.jpg" height="191" width="750" alt="">
+			<img src="images/cps_05.jpg" height="191" width="750" alt="">
+			<img src="images/cps_06.jpg" height="190" width="750" alt="">
+			<img src="images/cps_07.jpg" height="191" width="750" alt="">
+		</div>
+		<div class="modal-rule hide">
+			<div class="clearfix">
+				<img src="images/btn_close.png" class="btn-close pull-right" alt="" width="44" height="44">
+			</div>
+			<div class="txt-cont">
+				<h3 class="text-center">活动规则</h3>
+				<div class="txt-gz hide" >
+					<p>
+						1、注册送10000元体验金、18元现金券、28元现金券；开户送88元现金券、128元现金券；充值送218元现金券、518元现金券。每个用户仅限参加一次。<br />
+2、体验金券的有效期为发放后7天、现金券的有效期为发放后7天，现金券每次投资只能使用一张，获得后在我的卡券内查看。 <br />
+3、体验金仅适用于投资体验金专享标，到期后获得利息收益，收益直接进入账户余额，可以投资和提现。<br />
+4、体验金投资所得收益部分归客户所有，本金部分由平台收回。<br />
+5、18元现金券，单笔投资满2000元使用；<br />
+28元现金券，单笔投资满6000元使用；<br />
+88元现金券，单笔投资8000元、期限3个月及以上标的适用;<br />
+128元现金券，单笔投资10000元、期限3个月及以上标的适用;<br />
+218元现金券，单笔投资8000元、期限6个月及以上标的适用;<br />
+518元现金券，单笔投资15000元、期限6个月及以上标的适用。<br />
+6、对活动如有任何疑问，敬请咨询客服热线：400-109-2626。<br />
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="bot_box" >
+			<div class="reg_two hide" v-show="checkPhoneYes">
+				<div class="clearfix mar-t-10 mar-b-10" v-if="checkPhoneYes"><img src="images/btn_close.png" alt="" width="44" height="44" class="btn-close-register pull-right" @click="closeRegisBox()"></div>
+				<div class="form page">
+					<div class="disflex relative">
+						<i class="icon_user"></i>
+						<input type="tel" v-model="inpPhone" placeholder="手机号" class="inp_phone" maxlength="11">
+						<p v-show="errorphone" class="errorphone errortip" @click="hideError(0)" >手机号输入错误</p>
+						<div class="clearData iconx" @click="clearInpData('inpPhone')"></div>
+					</div>
+					<div class="code disflex justify_sb mar-t-15 bg-white relative">
+						<i class="icon_picture"></i>
+						<input type="text" placeholder="图片验证码" class="inp_code inp_pictrue_code outline_no" v-model="pictureCode" maxlength="4">
+						<p v-show="errorpictureCode" class="errorpictureCode errortip" @click="hideError(1)" >图片验证码错误</p>
+						<img v-bind:src="pictureUrl" class="picture_code_img" @click="refreshPicture()" id="checkcode_img">
+						<div class="clearData iconx r32b" @click="clearInpData('pictureCode')"></div>
+					</div>
+					<div class="code disflex justify_sb mar-t-15 relative">
+						<i class="phone_code"></i>
+						<input type="text" placeholder="短信验证码" class="inp_code outline_no inp_phone_code" v-model="phoneCode" maxlength="4">
+						<p v-show="errorphoneCode" class="errorphoneCode errortip" @click="hideError(2)" >短信验证码错误</p>
+						<span type="button" v-text="countTime" id="sms_validCode_btn_id" class="fs24 disflex justify_c alignitem_c btn_getcode" :class="{ 'bg-gray': isPhoneCode }"
+							@click="getPhoneCode"></span>
+						<div class="clearData iconx r32b" @click="clearInpData('phoneCode')"></div>
+					</div>
+					<div class="disflex relative mar-t-10">
+						<i class="icon_psw" v-cloak></i>
+						<input type="password" placeholder="密码为6-16位数字与字母组合" class="inp_psw" v-model="inpPsw" maxlength="16" >
+						<p v-show="errorinpPsw" class="errorinpPsw errortip" @click="hideError(3)" >密码格式错误</p>
+						<div class="clearData iconx r55p" @click="clearInpData('inpPsw')"></div>
+						<div class="changeType eye_close"></div>
+					</div>
+					<p class="disflex alignitem_c color-white mar-t-10 mar-b-10">
+						<input type="checkbox" name="xieyi" id="xieyi" v-model="isXieYi">
+						<span><label for="xieyi" class="fs24">我已阅读并同意</label><span class="fs24 c999 color-white btn_xieyi" @click="openXieyi()">《宜泉资本注册服务及隐私保护协议》</span>
+					</span>
+					</p>
+					<div class="">
+						<input type="button" value="立即注册" id="register_btn_id" class="btn_register" @click="regisMain()">
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="xieyi_box" >
+			<div id="xieyi_box">
+
+			</div>
+			<div class="close_xieyi"></div>
+		</div>
+
+	</div>
+
+	<div class="mask1"></div>
+	<script src="/js/vue.min.js"></script>
+	<script src="/src/activity/cps/js/activity.js"></script>
+	<script src="/src/activity/cps/js/fastclick.min.js"></script>
+	<script>
+		window.onload = function () {
+				//加载活动规则
+				$('#xieyi_box').load('/src/base/rigisterxy.html #container',function(){
+					$('header .back').html('<a class="back_a show" href="javascript:history.go(-1)"><span class="icon_back">&nbsp;</span></a>');
+				});
+			}
+
+		vm.index();
+		function createBg() {
+			$('body').append(
+				'<div id="modal-bg" style="position:fixed;width:100%;height:100%;left:0;top:0;background:#000;opacity:0.6;z-index:8"></div>'
+			);
+		}
+		function showGz(num) {
+			createBg();
+			$('.modal-rule').show();
+			$('.modal-rule .txt-gz').eq(num).show();
+			$('html,body').addClass('ovfHiden');
+		}
+
+		function hideGz() {
+			$('.modal-rule').hide();
+			$('.modal-rule .txt-gz').hide();
+			$('#modal-bg').remove();
+			$('html,body').removeClass('ovfHiden');
+		}
+		$('.btn_rule_one').bind('click', function () {
+			showGz(0);
+		})
+		$('.btn-close').bind('click', function () {
+			hideGz();
+		})
+		//悬浮层 注册协议
+		$('.close_xieyi').click(function () {
+			$('.xieyi_box').css('left','200%');
+			$('.close_xieyi').hide();
+		})
+		//安卓下注册第二部bug处理
+		if (!util.isOsType()) {
+			$('.inp_phone,.inp_code,.icon_psw').focus(function () {
+				setTimeout(function () {
+					$('.reg_two').height($(window).height() - 40);
+				}, 1000)
+
+			})
+		}
+	</script>
+</body>
+
+</html>

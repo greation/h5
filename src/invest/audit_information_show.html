@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>房产资料</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body style="background: #fff">
+	<div id="invest" class="invest" v-cloak>
+		<header class="invest-header">
+			<span class="back" onClick="javascript :history.back(-1);">
+				<img src="/skins/new/images/icon_back.png" alt="">
+			</span>
+			<h1>房产资料</h1>
+		</header>
+
+		<section class="block">
+			
+		</section>
+
+		<div class="hr65"></div>
+
+		<!-- <div id="toTop" onclick="$(document).scrollTop(0);">
+			<img src="/images/backup.png" />
+		</div> -->
+	</div>
+
+	@@include('../include/foot.html',{ "curMenu":"1" })
+	<script src="/js/new_js/invest_share.js"></script>
+	<script>
+		iv.invest();
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>选择卡券</title>
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/public.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/invest.css" />
+	<link rel="stylesheet" type="text/css" href="/skins/new/css/account.css" />
+	<script src="/js/new_js/zepto.min.js"></script>
+	<script src="/js/new_js/vue.min.js"></script>
+	<script src="/js/new_js/public.js"></script>
+</head>
+
+<body class="co">
+
+
+	<div id="xzCard" v-cloak>
+		<header class="invest-header">
+			<span class="back" @click="cardGoBack">
+				<img src="/skins/new/images/icon_back.png" alt="">
+			</span>
+			<h1>选择卡券</h1>
+		</header>
+
+		<div class="list" v-if="data.voucherList.length > 0">
+			<div class="coupon-item" v-for="(coupon, index) in expresscard">
+				<div :class="coupon.rewardType" @click="choosCard(coupon.id,coupon.val,coupon.rewardType)">
+					<img v-show="coupon.id == cardId" class="selectCoupon" src="/skins/new/images/coupon-selected-icon.png" />
+					<div class="coupon-item-left">
+						<i class="icon"></i>
+						<div style="position: relative;">
+							<h2 v-text="coupon.rewardName"></h2>
+							<p style="position: absolute;top: 24px;width: 200px;">
+								<span v-text="coupon.effectiveTerm"></span>
+							</p>
+						</div>
+					</div>
+					<div class="coupon-item-right" v-text="coupon.rewardType == 'jia'?'+' + coupon.val: coupon.val + '元'"></div>
+				</div>
+				<div class="coupon-item-bottom">
+					<div class="slide-th" @click="showItemDetail(index)">
+						查看详情
+						<em :class="curDetailIndex.indexOf(index) > -1?'up':'down'"></em>
+					</div>
+					<div class="slide-td" v-show="curDetailIndex.indexOf(index) > -1">
+						<p v-if="coupon.rewardType==='ti'">
+							<span class="dot"></span>单笔投资无金额限制</p>
+						<p v-else-if="coupon.minInvest==='-1'">
+							<span class="dot"></span>投资金额无限制</p>
+						<p v-else>
+							<span class="dot"></span>单笔投资满
+							<em v-text="coupon.minInvest"></em>元可用
+						</p>
+						<p>
+							<span class="dot"></span>投资期限
+							<span v-text="coupon.rewardUseDuration==='-1'? '无限制' : coupon.durType==='DAY'?coupon.rewardUseDuration+'天':'满'+coupon.rewardUseDuration+'个月可用'"></span>
+						</p>
+						<p v-if="coupon.instructions">
+							<span class="dot"></span><span v-text="coupon.instructions"></span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<input type="button" :value="loadTxt" class="btn_load_more mar-t-10" @click="loadMore">
+		</div>
+
+		<div class="no-jilu" style="margin-top: 60px;" v-else>
+			<img src="/skins/new/images/coupon-no-icon.png" alt="">
+			<div class="no-more">暂无卡券</div>
+		</div>
+	</div>
+	<div class="hr10"></div>
+
+	<script src="/js/new_js/invest.js"></script>
+	<script>
+		iv.xzcard();
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>2周年狂欢Party，福利盛宴重磅来袭</title>
+  <link rel="stylesheet" href="/skins/new/css/public.css" />
+  <link rel="stylesheet" href="/src/activity/anniversary/css/base.css" />
+  <script src="/js/new_js/zepto.min.js"></script>
+  <script src="/js/new_js/public.js"></script>
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<script>
+</script>
+<script>
+  util.wxShareMain({
+    //如果如要debug加添参数debug为true
+    title: '2周年狂欢Party，福利盛宴重磅来袭',
+    desc: '四重好礼，惊喜不可错过',
+    link: Helper.webPath + '/src/activity/anniversary/index.html',
+    imgUrl: Helper.webPath + '/src/activity/anniversary/images/share.jpg',
+    successEvt: function () {
+      window.location.href = '/src/activity/anniversary/index.html?random=' + parseInt(Math.random() * 100000);
+    },
+    cancelEvt: function () {
+      //
+    }
+  });
+</script>
+<style type="text/css">
+</style>
+
+<body>
+  <div id="activity" class="activity">
+    <div class="head">
+      <img src="/src/activity/anniversary/images/head-img1.jpg" alt="">
+      <img src="/src/activity/anniversary/images/head-img2.jpg" alt="">
+      <img src="/src/activity/anniversary/images/head-img3.jpg" alt="">
+      <a href="javascript:;" @click="isShowRule = true" class="rule-btn">
+        <img src="/src/activity/anniversary/images/rule-img.png" alt="" width="50%">
+      </a>
+    </div>
+    <div class="content">
+      <div class="title">
+        <img src="/src/activity/anniversary/images/wish-title.png" alt="">
+        <a href="javascript:;" @click="getWishList" class="wish-list-btn">许愿单</a>
+      </div>
+      <div class="wish-desc">
+        2018年7月16日-9月9日
+      </div>
+      <div class="happy-btn">
+        <a href="javascript:;" @click="toInvest">
+          <img src="/src/activity/anniversary/images/wish-btn.png" alt="">
+        </a>
+      </div>
+      <div class="pool">
+        <div class="pool-box">
+          <img src="/src/activity/anniversary/images/500-wish.png" alt="">
+          <img src="/src/activity/anniversary/images/500-wish-wph.png" class="pool-500-1" @click="toWish('wph')" />
+          <img src="/src/activity/anniversary/images/500-wish-hf.png" class="pool-500-2" @click="toWish('hf')" />
+          <img src="/src/activity/anniversary/images/500-wish-ymx.png" class="pool-500-3" @click="toWish('ymx')" />
+          <img src="/src/activity/anniversary/images/500-wish-wy.png" class="pool-500-4" @click="toWish('wy')" />
+
+        </div>
+        <p>单笔投资≥1.5万年标/3万半年标
+          <br/>即可在价值500元的奖品池任选一个奖品领取</p>
+      </div>
+      <div class="pool">
+        <div class="pool-box">
+          <img src="/src/activity/anniversary/images/1000-wish.png" alt="">
+          <img src="/src/activity/anniversary/images/1000-wish-jy.png" class="pool-1000-1" @click="toWish('jy')" />
+          <img src="/src/activity/anniversary/images/1000-wish-jd.png" class="pool-1000-2" @click="toWish('jd')" />
+          <img src="/src/activity/anniversary/images/1000-wish-xc.png" class="pool-1000-3" @click="toWish('xc')" />
+          <img src="/src/activity/anniversary/images/1000-wish-ysp.png" class="pool-1000-4" @click="toWish('ysp')" />
+
+        </div>
+        <p>单笔投资≥2.5万年标/5万半年标，
+          <br/> 即可在价值1000元的奖品池任选一个奖品领取
+        </p>
+      </div>
+      <div class="pool-input">
+        <p>
+          <img src="/src/activity/anniversary/images/wish-input-title.png" alt="">
+        </p>
+        <div class="pool-input-box">
+          <input class="pool-input-style" placeholder="你还想要……" v-model="wishVal" maxlength="20"/>
+          <img src="/src/activity/anniversary/images/wish-input-btn.png" @click="setWish">
+        </div>
+      </div>
+
+      <div class="copyright">
+        本活动与苹果公司无关
+        <br/> 借贷有风险，理财需谨慎
+        <br/> 宜泉资本提醒您：请勿相信任何承诺投资返现的虚假信息
+        <br/> 如对本活动有疑问，请拨打客服电话：400-109-2626
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="index.html" :class="footerIndex == 1?'active':''">
+        <img src="/src/activity/anniversary/images/footer-img1.png" alt="">
+      </a>
+      <a href="happy.html" :class="footerIndex == 2?'active':''">
+        <img src="/src/activity/anniversary/images/footer-img2.png" alt="">
+      </a>
+      <a href="wish.html" :class="footerIndex == 3?'active':''">
+        <img src="/src/activity/anniversary/images/footer-img3.png" alt="">
+      </a>
+    </div>
+
+    <div class="shadow" v-show="isShowRule || isShowWishList"></div>
+    <div class="rule-box" v-show="isShowRule">
+      <div class="box">
+        <img src="/src/activity/anniversary/images/close-icon.png" class="close" @click="isShowRule = false" />
+        <h3>活动规则</h3>
+        <div class="box-content" v-html="wishRuleData"></div>
+      </div>
+    </div>
+
+    <div class="wish-box" v-show="isShowWishList">
+      <div class="box">
+        <div class="wish-box-title">
+          许愿单
+          <img src="/src/activity/anniversary/images/close-icon1.png" @click="isShowWishList = false" />
+        </div>
+        <div class="wish-box-content">
+          <div class="wish-list" v-if="wishList && wishList.length > 0">
+            <ul>
+              <li>
+                <span class="wish-list-time">2018-03-18 19:12:21</span>
+                <span>价值500元网易严选礼品卡（电子卡）</span>
+                <span class="wish-list-num">x1</span>
+              </li>
+              <li>
+                <span class="wish-list-time">2018-03-18 19:12:21</span>
+                <span>价值500元网易严选礼品卡（电子卡）</span>
+                <span class="wish-list-num">x1</span>
+              </li>
+              <li>
+                <span class="wish-list-time">2018-03-18 19:12:21</span>
+                <span>价值500元网易严选礼品卡（电子卡）</span>
+                <span class="wish-list-num">x1</span>
+              </li>
+              <li>
+                <span class="wish-list-time">2018-03-18 19:12:21</span>
+                <span>价值500元网易严选礼品卡（电子卡）</span>
+                <span class="wish-list-num">x1</span>
+              </li>
+            </ul>
+          </div>
+          <div class="wish-list-empty" v-else>
+            <img src="/src/activity/anniversary/images/wish-list-empty.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+<script src="/js/new_js/vue.min.js"></script>
+<script src="/src/activity/anniversary/js/activity.js"></script>
+<script>
+  util.setCookieHandle(function () {
+    vm.activity();
+  })
+</script>
+
+</html>

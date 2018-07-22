@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>只投动不了的资产</title>
+  <link rel="stylesheet" href="/skins/new/css/public.css" />
+  <link rel="stylesheet" href="/src/activity/coupons_card/css/base.css" />
+  <script src="/js/new_js/zepto.min.js"></script>
+  <script src="/js/new_js/public.js"></script>
+</head>
+
+<body>
+  <div id="activity" class="activity">
+    <div class="banner">
+      <img src="/src/activity/coupons_card/images/banner.png" alt="" width="100%">
+    </div>
+    <div class="content">
+      <img src="/src/activity/coupons_card/images/text.png" alt="" width="100%">
+      <div class="button">
+        <button type="button" v-text="buttonVal" @click="getCards"></button>
+      </div>
+      <p>卡券自发放之日起1个月内有效；卡券需在发放后24小时之内领取，若未及时领取则卡券自动过期失效。</p>
+    </div>
+  </div>
+</body>
+<script src="/js/new_js/vue.min.js"></script>
+<script src="/src/activity/coupons_card/js/activity.js"></script>
+<script>
+  vm.activity();
+</script>
+
+</html>

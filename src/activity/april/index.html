@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title></title>
+	<link rel="stylesheet" href="/skins/default/css/public.css"/>
+	<link rel="stylesheet" href="/src/activity/april/css/base.css"/>
+	<script src="/js/zepto.min.js"></script>
+	<script src="/js/public.js"></script>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<script>
+	(function(para) {
+			  var p = para.sdk_url, n = para.name, w = window, d = document, s = 'script',x = null,y = null;
+			  w['sensorsDataAnalytic201505'] = n;
+			  w[n] = w[n] || function(a) {return function() {(w[n]._q = w[n]._q || []).push([a, arguments]);}};
+			  var ifs = ['track','quick','register','registerPage','registerOnce','clearAllRegister','trackSignup', 'trackAbtest', 'setProfile','setOnceProfile','appendProfile', 'incrementProfile', 'deleteProfile', 'unsetProfile', 'identify','login','logout','trackLink','clearAllRegister','getAppStatus'];
+			  for (var i = 0; i < ifs.length; i++) {
+			    w[n][ifs[i]] = w[n].call(null, ifs[i]);
+			  }
+			  if (!w[n]._t) {
+			    x = d.createElement(s), y = d.getElementsByTagName(s)[0];
+			    x.async = 1;
+			    x.src = p;
+			    y.parentNode.insertBefore(x, y);
+			    w[n].para = para;
+			  }
+			})({
+			  sdk_url: 'https://static.sensorsdata.cn/sdk/1.8.11/sensorsdata.min.js',
+			  name: 'sa',
+			  server_url: 'https://data.ekeyfund.com:4006/sa?project=' + Helper.settingPath
+			});
+			sa.quick('autoTrack');
+		 
+	var current_url = Helper.webPath + '/src/activity/april/index.html';
+	 function createBg() {
+        $('body').append('<div id="modal-bg" style="position:fixed;width:100%;height:100%;left:0;top:0;background:#000;opacity:0.6;z-index:2"></div>');
+    }
+    function showGz() {
+    	sa.track('int_click',{campaignName:'4月站内活动',lpUrl:current_url,elementId:$(".btn-rule-box").attr('id'),elementContent:'活动规则',elementName:'活动规则'});
+        createBg();
+        $('.modal-rule').show();
+    }
+    function hideGz() {
+        $('.modal-rule').hide();
+        $('#modal-bg').remove();
+    }
+    $('.btn-rule-box').bind('click', function() {
+        showGz();
+    })
+    $('.btn-close').bind('click', function() {
+        hideGz();
+    })
+</script>
+<script>
+		util.wxShareMain({
+			//如果如要debug加添参数debug为true
+			title: 'High翻五月天，尽享缤纷礼赞',
+			desc: '轻松解锁，感恩礼赞',
+			link: Helper.webPath + '/src/activity/april/index.html',
+			imgUrl: Helper.webPath + '/src/activity/april/images/share.jpg',
+			successEvt: function () {
+				window.location.href = '/src/activity/april/index.html?random=' + parseInt(Math.random() * 100000);
+			},
+			cancelEvt: function () {
+				//
+			}
+		});
+	</script>
+<style type="text/css">
+	.modal-rule {
+    position: fixed;
+    width: 86%;
+    height: 70%;
+    left: 7%;
+    top: 10%;
+    z-index: 9;
+}
+.modal-rule .txt-cont {
+    height: 80%;
+    background: #fff;
+    padding: 15px;
+    line-height: 2.2;
+    margin-top: 5px;
+    font-size: 0.875rem;
+    border-radius: 15px;
+}
+.modal-rule .txt-gz {
+    height: 90%;
+    overflow: auto;
+}
+.btn-rule-box {
+    width: 23%;
+    height: 40px;
+    position: absolute;
+    top: 46px;
+	left:8px;
+}
+@media only screen and (min-width: 400px) and (max-width:640px) {
+	.btn-rule-box {
+    width: 23%;
+    height: 40px;
+    position: absolute;
+    top: 53px;
+    left: 12px;
+}
+}
+
+.dreamimg{width: 100%;}
+</style>
+<body class="re sr">
+	<div class="container1">
+		<div class="" id="re">
+			<div class="relative iosad">
+				<img src="/src/activity/april/images/april_01.jpg" class="dreamimg"/>
+				<span class="btn-rule-box" id="btn-rule-box" onclick="showGz()"></span>
+			</div>
+			<img src="/src/activity/april/images/april_02.jpg" class="dreamimg"/>
+			<img src="/src/activity/april/images/april_03.jpg" class="dreamimg"/>
+			<div class="relative iosad">
+				<img src="/src/activity/april/images/april_04.jpg" class="dreamimg"/>
+				<span class="yblinkbtn yblinkbg0 ybtnL" id="ybtnL0" @click="ybLink0"></span>
+			</div>
+			<img src="/src/activity/april/images/april_05.jpg" class="dreamimg"/>
+			<div class="relative iosad">
+				<img src="/src/activity/april/images/april_06.jpg" class="dreamimg"/>
+				<span class="yblinkbtn yblinkbg1 ybtnL" id="ybtnL1" @click="ybLink1"></span>
+				<span class="yblinkbtn yblinkbg2 ybtnL" id="ybtnL2"  @click="ybLink2"></span>
+			</div>
+			<img src="/src/activity/april/images/april_07.jpg" class="dreamimg"/>
+			<div class="relative iosad">
+				<img src="/src/activity/april/images/april_08.jpg" class="dreamimg"/>
+				<span class="yblinkbtn yblinkbg3 ybtnL" id="ybtnL3"  @click="ybLink3"></span>
+				<span class="yblinkbtn yblinkbg4 ybtnL" id="ybtnL4"  @click="ybLink4"></span>
+			</div>
+
+			<div class="relative iosad">
+				<img src="/src/activity/april/images/april_09.jpg" class="dreamimg"/>
+				<span class="yblinkbtn yblinkbg5 ybtnL" id="ybtnL5"  @click="ybLink5"></span>
+				<span class="yblinkbtn yblinkbg6 ybtnL" id="ybtnL6"  @click="ybLink6"></span>
+			</div>
+			<div class="relative iosad">
+				<img src="/src/activity/april/images/april_10.jpg" class="dreamimg"/>
+				<span class="goinvesting" id="goinvesting"  @click="goinvesting"></span>
+			</div>
+		<div class="modal-rule hide">
+			<div class="clearfix">
+				<img src="/src/activity/april/images/btn_close.png" class="btn-close pull-right" alt=""
+					 width="44" height="44" onclick="hideGz()"/>
+			</div>
+			<div class="txt-cont">
+				<h3 class="text-center">活动规则</h3>
+				<div class="txt-gz" v-html="ruleData">
+					
+				</div>
+			</div>
+		</div>
+		</div>
+
+	</div>
+	</body>
+	<script src="/js/vue.min.js"></script>
+	<script src="/src/activity/april/js/activity.js"></script>
+	<script>
+        util.setCookieHandle(function(){
+            vm.re();
+        })
+	</script>
+</html>

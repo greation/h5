@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="format-detection" content="telephone=no" />
+  <title>风险评测</title>
+  <link rel="stylesheet" href="/skins/default/css/public.css">
+  <link rel="stylesheet" href="/skins/default/css/account.css">
+  <link rel="stylesheet" href="/plugins/swiper/swiper-3.4.2.min.css">
+  <script src="/js/zepto.min.js"></script>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/public.js"></script>
+  <script src="/plugins/swiper/swiper.min.js"></script>
+</head>
+
+<body>
+  <style>
+    body{
+      background: #ffffff;
+    }  
+  </style>
+  @@include('../include/head.html',{ "title":"风险评测", "isback":"true" })
+  <div class="container rr" id="rr">
+    <p class="pad-l-15 line01">您的投资类型为</p>
+    <p class="pad-l-15 line02" id="level_name">保守型</p>
+    <p class="pad-l-15 pad-r-15 mar-t-15 color-gray" id="level_cont">
+        在风险和收益的天平之间，您态度鲜明的维护“低风险”乃是投资第一要义。<br>
+        您反对进取型投资者关于投资的那种态度，因为您是一位保守型投资者。        
+    </p>
+    <div class="pad-l-15 pad-r-15">
+        <input type="button" class="btn_ok" value="完成">
+    </div>
+    
+    <p class="text-center mar-t-40"><a href="./risk_assessment.html" class="color-gray">重测</a></p>
+  </div>
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/account.js"></script>
+  <script>
+    $(function(){
+      $('.btn_ok').bind('click',function(){
+        if(APP_FLAG === 'APP_IOS'){
+          window.webkit.messageHandlers.riskAssessment.postMessage('');
+        }else if(APP_FLAG === 'APP_ANDROID'){
+          android.riskAssessment();
+        }else{
+          var url = localStorage.getItem('riskCallBackUrl');
+          if(url!==null){
+            window.location.href = url;
+          }else{
+            window.location.href = '/src/account/index.html';
+          }
+        }
+      })
+      $.ajax({
+        url: Helper.basePath + 'survey/level.htm',
+        type: 'POST',
+        dataType: 'json',
+        xhrFields: {
+          withCredentials: true
+        }
+      })
+      .done(function (data) {
+        var data = JSON.parse(data);
+        $('#level_name').text(data.surveyLevel.levelName);
+        $('#level_cont').text(data.surveyLevel.remark);
+      })
+    })
+  </script>
+</body>
+
+</html>
